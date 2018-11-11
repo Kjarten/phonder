@@ -56,6 +56,11 @@ Keyra bæði `eslint` og `stylelint`:
 > cd /*slóð á verkefni*
 > npm run test
 ```
+Keyra `browser-sync`:
+```
+> cd /*slóð á verkefni*
+> npm run dev
+```
 --------------------------------------------------------------------------------------------------------------------------------------
 
 ## git:
