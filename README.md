@@ -1,4 +1,157 @@
-# Hópverkefni 2
+
+# Hópverkefni 2 - phonder
+
+## Uppsetningar:
+
+node.js: https://nodejs.org/en/
+
+`stylelint-config-primer` - Sama og notað var í hópverkefni 1. Þetta var víst vitlaust upp sett hjá mér síðast.
+
+Í terminal:
+```
+> cd /*slóð á verkefni*
+> npm init
+..*svara spurningum*
+> npm install --save-dev stylelint
+...
+> npm install --save-dev stylelint-config-primer
+```
+
+`node-sass` - Sama og notað var í hópverkefni 1.
+
+Í terminal:
+```
+> cd /*slóð á verkefni*
+> npm init
+..*svara spurningum*
+> npm install --save node-sass
+```
+
+Vantar að setja inn upplýsingum um `rollup` og `babel`.
+--------------------------------------------------------------------------------------------------------------------------------------
+
+## Keyra tól:
+
+ATH! Keyra tól í terminal!
+
+Keyra `sass`:
+```
+> cd /*slóð á verkefni*
+> npm run sass
+```
+
+Keyra `stylelint`:
+```
+> cd /*slóð á verkefni*
+> npm run stylelint
+```
+
+Keyra `eslint`:
+```
+> cd /*slóð á verkefni*
+> npm run eslint
+```
+Keyra bæði `eslint` og `stylelint`:
+```
+> cd /*slóð á verkefni*
+> npm run test
+```
+--------------------------------------------------------------------------------------------------------------------------------------
+
+## git:
+
+`Branching`:
+```
+> cd /*slóð á verkefni*
+> git init
+> git checkout - b "nafn á grein"
+> git add .
+> git commit -m "*verklýsing*"
+> git push -u *"nafn á grein"*  - *NOTE: Án gæsalappa.*
+```
+
+`Pull`:
+```
+> cd /*slóð á verkefni*
+> git init
+> git pull https://github.com/Kjarten/swind.git
+```
+--------------------------------------------------------------------------------------------------------------------------------------
+
+## Stílbrigði:
+
+### Litapalletta (skilgreint í `config.scss`):
+
+- ![#000](https://placehold.it/15/000/000000?text=+) Hexadecimal color code: `#000`. - Reference: `$black`
+- ![#999](https://placehold.it/15/999/000000?text=+) Hexadecimal color code: `#999`. - Reference: `$darkgray`
+- ![#aaa](https://placehold.it/15/aaa/000000?text=+) Hexadecimal color code: `#aaa`. - Reference: `$gray`
+- ![#ccc](https://placehold.it/15/ccc/000000?text=+) Hexadecimal color code: `#ccc`. - Reference: `$lightgray`
+- ![#2d2](https://placehold.it/15/2d2/000000?text=+) Hexadecimal color code: `#2d2`. - Reference: `$lightgreen`
+- ![#1a1](https://placehold.it/15/1a1/000000?text=+) Hexadecimal color code: `#1a1`. - Reference: `$darkgreen`
+- ![#fcffd2](https://placehold.it/15/fcffd2/000000?text=+) Hexadecimal color code: `#fcffd2`. - Reference: `$yellow`
+- ![#cc9694](https://placehold.it/15/cc9694/000000?text=+) Hexadecimal color code: `#cc9694`. - Reference: `$red`
+
+___
+
+### Leturgerðir (skilgreint í `config.scss`):
+
+Letur fyrir meginmál er:
+- Lora, https://fonts.google.com/specimen/Lora
+- Times New Roman eða
+- serif letur
+- Reference: `$titlefont`
+
+Letur fyrir fyrirsagnir er:
+- Roboto Mono, https://fonts.google.com/specimen/Roboto+Mono
+- Courier New eða 
+- monospace
+- Reference: `$textfont`
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+## Uppsetning á verkefni - Þarf að breyta
+```
+> phonder
+   > img *- .jpg, .png, .gif og .svg með myndum sem notast skal við í verkefninu.*
+   > src
+     > lib
+     > styles *- .scss skrár*
+   > node_modules *- Ekki eiga við "Má ekki skafa".*
+   > pages *- .html skrár fyrir undirsíður*
+     > cart.html *- Undirsíða*
+     > products.html *- Undirsíða*
+     > staff.html *- Undirsíða*
+    > scss *- .scss skrár*
+      > button.scss *- "Stylesheet" fyrir takka.*
+      > cart.scss *- "Stylesheet" fyrir cart.html.*
+      > config.scss *- "Stylesheet" fyrir grunnstíla.*
+      > footer.scss *- "Stylesheet" fyrir fót, allar síður.*
+      > header.scss *- "Stylesheet" fyrir haus, allar síður.*
+      > index.scss *- "Stylesheet" fyrir forsíðu (indes.html).*
+      > products.scss *- "Stylesheet" fyrir products.html.*
+      > staff.scss *- "Stylesheet" fyrir staff.html.*
+    > utlit *- Mappa sem geymir skjáskot af fyrirmynd af útliti.*
+    ...
+    > stylelintrc *- Nauðsynlegt fyrir stylint, ekki eiga við "Má ekki skafa".*
+    > grid.css *- "Stylesheet" fyrir grid.*
+    > index.html *- Forsíða*
+    > package.json *- NPM scripts.*
+    > styles.scss - 
+```
+--------------------------------------------------------------------------------------------------------------------------------------
+## Upplýsingar um "contributors" - Birt í stafsetningarröð
+
+Guðrún Úlfarsdóttir (guu4@hi.is)
+Námsleið: Tölvunarfræði, BS
+
+Kjartan Þór Birgisson (kthb2@hi.is)
+Námsleið: Vélaverkfræði, MS
+
+Máni Bernharðsson (mab27@hi.is)
+Námsleið: Tölvunarfræði, BS
+
+--------------------------------------------------------------------------------------------------------------------------------------
+# Verklýsing frá Ólafi Sverri Kjartanssyni - Aðjunkt
 
 Verkefnið felst í því að smíða prótótýpu af fyrirlestravef fyrir vefforritun. Gefin eru gögn sem unnin eru uppúr námsefni vetrarins.
 
