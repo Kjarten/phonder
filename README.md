@@ -58,7 +58,7 @@ Keyra bæði `eslint` og `stylelint`:
 > cd /*slóð á verkefni*
 > npm run test
 ```
-Keyra `browser-sync`:
+Keyra `browser-sync`: - ATH! Það verður að nota `browser-sync` til að skoða í browser, annars virkar ekki neitt.
 ```
 > cd /*slóð á verkefni*
 > npm run dev
