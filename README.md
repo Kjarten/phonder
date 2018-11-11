@@ -118,9 +118,9 @@ Letur fyrir fyrirsagnir er:
 
 ## Validators:
 
-HTML villur: https://validator.w3.org/
-Aðgengisvillur: http://wave.webaim.org/
-CSS villur: https://jigsaw.w3.org/css-validator/
+- HTML villur: https://validator.w3.org/
+- Aðgengisvillur: http://wave.webaim.org/
+- CSS villur: https://jigsaw.w3.org/css-validator/
 
 --------------------------------------------------------------------------------------------------------------------------------------
 
