@@ -97,6 +97,7 @@ Keyra `browser-sync`: - ATH! Það verður að nota `browser-sync` til að skoð
 - ![#1a1](https://placehold.it/15/1a1/000000?text=+) Hexadecimal color code: `#1a1`. - Reference: `$darkgreen`
 - ![#fcffd2](https://placehold.it/15/fcffd2/000000?text=+) Hexadecimal color code: `#fcffd2`. - Reference: `$yellow`
 - ![#cc9694](https://placehold.it/15/cc9694/000000?text=+) Hexadecimal color code: `#cc9694`. - Reference: `$red`
+- Hvítur, 60% gegnsær litur. - Reference: `$white`
 
 ___
 
