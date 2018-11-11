@@ -90,11 +90,11 @@ Keyra `browser-sync`: - ATH! Það verður að nota `browser-sync` til að skoð
 ### Litapalletta (skilgreint í `config.scss`):
 
 - ![#000](https://placehold.it/15/000/000000?text=+) Hexadecimal color code: `#000`. - Reference: `$black` - Notkun: Allur texti.
-- ![#999](https://placehold.it/15/999/000000?text=+) Hexadecimal color code: `#999`. - Reference: `$darkgray` - Notkun: Takki og gráu boxin `Hover:`.
+- ![#999](https://placehold.it/15/999/000000?text=+) Hexadecimal color code: `#999`. - Reference: `$darkgray` - Notkun: Takki og gráu boxin `:hover`.
 - ![#aaa](https://placehold.it/15/aaa/000000?text=+) Hexadecimal color code: `#aaa`. - Reference: `$gray` - Notkun: Takki og gráu boxin.
 - ![#ccc](https://placehold.it/15/ccc/000000?text=+) Hexadecimal color code: `#ccc`. - Reference: `$lightgray`
-- ![#2d2](https://placehold.it/15/2d2/000000?text=+) Hexadecimal color code: `#2d2`. - Reference: `$lightgreen` - Notkun: Notaður takki.
-- ![#1a1](https://placehold.it/15/1a1/000000?text=+) Hexadecimal color code: `#1a1`. - Reference: `$darkgreen` - Notkun: Notaður takki `:Hover`.
+- ![#2d2](https://placehold.it/15/2d2/000000?text=+) Hexadecimal color code: `#2d2`. - Reference: `$lightgreen` - Notkun: "Active" takki.
+- ![#1a1](https://placehold.it/15/1a1/000000?text=+) Hexadecimal color code: `#1a1`. - Reference: `$darkgreen` - Notkun: "Active" takki `:hover`.
 - ![#fcffd2](https://placehold.it/15/fcffd2/000000?text=+) Hexadecimal color code: `#fcffd2`. - Reference: `$yellow`
 - ![#cc9694](https://placehold.it/15/cc9694/000000?text=+) Hexadecimal color code: `#cc9694`. - Reference: `$red`
 - Hvítur, 60% gegnsær litur. - Reference: `$white` - Notkun: Yfir allar bakgrunnsmyndir í haus.
