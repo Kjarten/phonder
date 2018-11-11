@@ -5,7 +5,7 @@
 
 node.js: https://nodejs.org/en/
 
-`stylelint-config-primer` ![#f03c15](- Sama og notað var í hópverkefni 1. Þetta var víst vitlaust upp sett hjá mér síðast.)
+`stylelint-config-primer` - Sama og notað var í hópverkefni 1. Þetta var víst vitlaust upp sett hjá mér síðast.
 
 Í terminal:
 ```
@@ -27,7 +27,7 @@ node.js: https://nodejs.org/en/
 > npm install --save node-sass
 ```
 
-![#f03c15](Vantar að setja inn upplýsingum um `rollup` og `babel`.)
+Vantar að setja inn upplýsingum um `rollup` og `babel`.
 --------------------------------------------------------------------------------------------------------------------------------------
 
 ## Keyra tól:
@@ -60,7 +60,7 @@ Keyra bæði `eslint` og `stylelint`:
 
 ## git:
 
-"Branching":
+`Branching`:
 ```
 > cd /*slóð á verkefni*
 > git init
@@ -70,18 +70,20 @@ Keyra bæði `eslint` og `stylelint`:
 > git push -u *"nafn á grein"*  - *NOTE: Án gæsalappa.*
 ```
 
-"Pull":
+`Pull`:
 ```
 > cd /*slóð á verkefni*
 > git init
 > git pull https://github.com/Kjarten/swind.git
 ```
 --------------------------------------------------------------------------------------------------------------------------------------
-## Uppsetning á verkefni
+## Uppsetning á verkefni - Þarf að breyta
 ```
-> swind
-   > efni *- .txt skrár með texta fyrir .html skrár.*
-   > img *- .jpg og .svg með myndum sem notast skal við í verkefninu.*
+> phonder
+   > img *- .jpg, .png, .gif og .svg með myndum sem notast skal við í verkefninu.*
+   > src
+     > lib
+     > styles *- .scss skrár*
    > node_modules *- Ekki eiga við "Má ekki skafa".*
    > pages *- .html skrár fyrir undirsíður*
      > cart.html *- Undirsíða*
