@@ -93,17 +93,19 @@ Keyra bæði `eslint` og `stylelint`:
 
 ___
 
-### Leturgerðir:
+### Leturgerðir (skilgreint í `config.scss`):
 
 Letur fyrir meginmál er:
 - Lora, https://fonts.google.com/specimen/Lora
 - Times New Roman eða
 - serif letur
+Reference: `$titlefont`
 
 Letur fyrir fyrirsagnir er:
 - Roboto Mono, https://fonts.google.com/specimen/Roboto+Mono
 - Courier New eða 
 - monospace
+Reference: `$textfont`
 
 --------------------------------------------------------------------------------------------------------------------------------------
 
