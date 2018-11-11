@@ -5,7 +5,7 @@
 
 node.js: https://nodejs.org/en/
 
-stylelint-config-primer
+`stylelint-config-primer` ![#f03c15](- Sama og notað var í hópverkefni 1. Þetta var víst vitlaust upp sett hjá mér síðast.)
 
 Í terminal:
 ```
@@ -17,7 +17,7 @@ stylelint-config-primer
 > npm install --save-dev stylelint-config-primer
 ```
 
-node-sass
+`node-sass` - Sama og notað var í hópverkefni 1.
 
 Í terminal:
 ```
@@ -26,22 +26,35 @@ node-sass
 ..*svara spurningum*
 > npm install --save node-sass
 ```
+
+![#f03c15](Vantar að setja inn upplýsingum um `rollup` og `babel`.)
 --------------------------------------------------------------------------------------------------------------------------------------
 
 ## Keyra tól:
 
 ATH! Keyra tól í terminal!
 
-Keyra "sass":
+Keyra `sass`:
 ```
 > cd /*slóð á verkefni*
 > npm run sass
 ```
 
-Keyra "lint":
+Keyra `stylelint`:
 ```
 > cd /*slóð á verkefni*
-> npm run lint
+> npm run stylelint
+```
+
+Keyra `eslint`:
+```
+> cd /*slóð á verkefni*
+> npm run eslint
+```
+Keyra bæði `eslint` og `stylelint`:
+```
+> cd /*slóð á verkefni*
+> npm run test
 ```
 --------------------------------------------------------------------------------------------------------------------------------------
 
@@ -51,7 +64,6 @@ Keyra "lint":
 ```
 > cd /*slóð á verkefni*
 > git init
-> git checkout - b "nafn á grein"
 > git checkout - b "nafn á grein"
 > git add .
 > git commit -m "*verklýsing*"
