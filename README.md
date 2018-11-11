@@ -80,14 +80,14 @@ Keyra bæði `eslint` og `stylelint`:
 
 ## Litapalletta (skilgreint í `config.scss`:
 
-`$black`: ![#000](https://placehold.it/15/000/000000?text=+) `#000`
-`$gray`: ![#999](https://placehold.it/15/999/000000?text=+) `#999`
-`$gray`: ![#aaa](https://placehold.it/15/aaa/000000?text=+) `#aaa`
-`$gray`: ![#ccc](https://placehold.it/15/ccc/000000?text=+) `#ccc`
-`$lightgreen`: ![#2d2](https://placehold.it/15/2d2/000000?text=+) `#2d2`
-`$darkgreen`: ![#1a1](https://placehold.it/15/1a1/000000?text=+) `#1a1`
-`$yellow`: ![#fcffd2](https://placehold.it/15/fcffd2/000000?text=+) `#fcffd2`
-`$red`: ![#cc9694](https://placehold.it/15/cc9694/000000?text=+) `#cc9694`
+- ![#000](https://placehold.it/15/000/000000?text=+) Hexadecimal color code: `#000`. - Referance: `$black`
+- ![#999](https://placehold.it/15/999/000000?text=+) Hexadecimal color code: `#999`. - Referance: `$gray`
+- ![#aaa](https://placehold.it/15/aaa/000000?text=+) Hexadecimal color code: `#aaa`. - Referance: `$gray`
+- ![#ccc](https://placehold.it/15/ccc/000000?text=+) Hexadecimal color code: `#ccc`. - Referance: `$gray`
+- ![#2d2](https://placehold.it/15/2d2/000000?text=+) Hexadecimal color code: `#2d2`. - Referance: `$lightgreen`
+- ![#1a1](https://placehold.it/15/1a1/000000?text=+) Hexadecimal color code: `#1a1`. - Referance: `$darkgreen`
+- ![#fcffd2](https://placehold.it/15/fcffd2/000000?text=+) Hexadecimal color code: `#fcffd2`. - Referance: `$yellow`
+- ![#cc9694](https://placehold.it/15/cc9694/000000?text=+) Hexadecimal color code: `#cc9694`. - Referance: `$red`
 
 --------------------------------------------------------------------------------------------------------------------------------------
 
