@@ -81,7 +81,7 @@ Keyra bæði `eslint` og `stylelint`:
 ## Stílbrigði:
 --------------------------------------------------------------------------------------------------------------------------------------
 
-# Litapalletta (skilgreint í `config.scss`):
+### Litapalletta (skilgreint í `config.scss`):
 
 - ![#000](https://placehold.it/15/000/000000?text=+) Hexadecimal color code: `#000`. - Referance: `$black`
 - ![#999](https://placehold.it/15/999/000000?text=+) Hexadecimal color code: `#999`. - Referance: `$darkgray`
@@ -94,7 +94,7 @@ Keyra bæði `eslint` og `stylelint`:
 
 --------------------------------------------------------------------------------------------------------------------------------------
 
-# Leturgerðir:
+### Leturgerðir:
 
 Letur fyrir meginmál er:
 - Lora, https://fonts.google.com/specimen/Lora
