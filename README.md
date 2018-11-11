@@ -1,4 +1,111 @@
-# Hópverkefni 2
+
+# Hópverkefni 2 - phonder
+
+## Uppsetningar:
+
+node.js: https://nodejs.org/en/
+
+stylelint-config-primer
+
+Í terminal:
+```
+> cd /*slóð á verkefni*
+> npm init
+..*svara spurningum*
+> npm install --save-dev stylelint
+...
+> npm install --save-dev stylelint-config-primer
+```
+
+node-sass
+
+Í terminal:
+```
+> cd /*slóð á verkefni*
+> npm init
+..*svara spurningum*
+> npm install --save node-sass
+```
+--------------------------------------------------------------------------------------------------------------------------------------
+
+## Keyra tól:
+
+ATH! Keyra tól í terminal!
+
+Keyra "sass":
+```
+> cd /*slóð á verkefni*
+> npm run sass
+```
+
+Keyra "lint":
+```
+> cd /*slóð á verkefni*
+> npm run lint
+```
+--------------------------------------------------------------------------------------------------------------------------------------
+
+## git:
+
+"Branching":
+```
+> cd /*slóð á verkefni*
+> git init
+> git checkout - b "nafn á grein"
+> git checkout - b "nafn á grein"
+> git add .
+> git commit -m "*verklýsing*"
+> git push -u *"nafn á grein"*  - *NOTE: Án gæsalappa.*
+```
+
+"Pull":
+```
+> cd /*slóð á verkefni*
+> git init
+> git pull https://github.com/Kjarten/swind.git
+```
+--------------------------------------------------------------------------------------------------------------------------------------
+## Uppsetning á verkefni
+```
+> swind
+   > efni *- .txt skrár með texta fyrir .html skrár.*
+   > img *- .jpg og .svg með myndum sem notast skal við í verkefninu.*
+   > node_modules *- Ekki eiga við "Má ekki skafa".*
+   > pages *- .html skrár fyrir undirsíður*
+     > cart.html *- Undirsíða*
+     > products.html *- Undirsíða*
+     > staff.html *- Undirsíða*
+    > scss *- .scss skrár*
+      > button.scss *- "Stylesheet" fyrir takka.*
+      > cart.scss *- "Stylesheet" fyrir cart.html.*
+      > config.scss *- "Stylesheet" fyrir grunnstíla.*
+      > footer.scss *- "Stylesheet" fyrir fót, allar síður.*
+      > header.scss *- "Stylesheet" fyrir haus, allar síður.*
+      > index.scss *- "Stylesheet" fyrir forsíðu (indes.html).*
+      > products.scss *- "Stylesheet" fyrir products.html.*
+      > staff.scss *- "Stylesheet" fyrir staff.html.*
+    > utlit *- Mappa sem geymir skjáskot af fyrirmynd af útliti.*
+    ...
+    > stylelintrc *- Nauðsynlegt fyrir stylint, ekki eiga við "Má ekki skafa".*
+    > grid.css *- "Stylesheet" fyrir grid.*
+    > index.html *- Forsíða*
+    > package.json *- NPM scripts.*
+    > styles.scss - 
+```
+--------------------------------------------------------------------------------------------------------------------------------------
+## Upplýsingar um "contributors" - Birt í stafsetningarröð
+
+Guðrún Úlfarsdóttir (guu4@hi.is)
+Námsleið: Tölvunarfræði, BS
+
+Kjartan Þór Birgisson (kthb2@hi.is)
+Námsleið: Vélaverkfræði, MS
+
+Máni Bernharðsson (mab27@hi.is)
+Námsleið: Tölvunarfræði, BS
+
+--------------------------------------------------------------------------------------------------------------------------------------
+# Verklýsing frá Ólafi Sverri Kjartanssyni - Aðjunkt
 
 Verkefnið felst í því að smíða prótótýpu af fyrirlestravef fyrir vefforritun. Gefin eru gögn sem unnin eru uppúr námsefni vetrarins.
 
