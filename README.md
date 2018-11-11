@@ -78,16 +78,33 @@ Keyra bæði `eslint` og `stylelint`:
 ```
 --------------------------------------------------------------------------------------------------------------------------------------
 
-## Litapalletta (skilgreint í `config.scss`:
+## Stílbrigði:
+--------------------------------------------------------------------------------------------------------------------------------------
+
+# Litapalletta (skilgreint í `config.scss`):
 
 - ![#000](https://placehold.it/15/000/000000?text=+) Hexadecimal color code: `#000`. - Referance: `$black`
-- ![#999](https://placehold.it/15/999/000000?text=+) Hexadecimal color code: `#999`. - Referance: `$gray`
+- ![#999](https://placehold.it/15/999/000000?text=+) Hexadecimal color code: `#999`. - Referance: `$darkgray`
 - ![#aaa](https://placehold.it/15/aaa/000000?text=+) Hexadecimal color code: `#aaa`. - Referance: `$gray`
-- ![#ccc](https://placehold.it/15/ccc/000000?text=+) Hexadecimal color code: `#ccc`. - Referance: `$gray`
+- ![#ccc](https://placehold.it/15/ccc/000000?text=+) Hexadecimal color code: `#ccc`. - Referance: `$lightgray`
 - ![#2d2](https://placehold.it/15/2d2/000000?text=+) Hexadecimal color code: `#2d2`. - Referance: `$lightgreen`
 - ![#1a1](https://placehold.it/15/1a1/000000?text=+) Hexadecimal color code: `#1a1`. - Referance: `$darkgreen`
 - ![#fcffd2](https://placehold.it/15/fcffd2/000000?text=+) Hexadecimal color code: `#fcffd2`. - Referance: `$yellow`
 - ![#cc9694](https://placehold.it/15/cc9694/000000?text=+) Hexadecimal color code: `#cc9694`. - Referance: `$red`
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+# Leturgerðir:
+
+Letur fyrir meginmál er:
+- Lora, https://fonts.google.com/specimen/Lora
+- Times New Roman eða
+- serif letur
+
+Letur fyrir fyrirsagnir er:
+- Roboto Mono, https://fonts.google.com/specimen/Roboto+Mono
+- Courier New eða 
+- monospace
 
 --------------------------------------------------------------------------------------------------------------------------------------
 
