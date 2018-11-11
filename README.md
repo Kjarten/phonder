@@ -67,14 +67,14 @@ Keyra bæði `eslint` og `stylelint`:
 > git checkout - b "nafn á grein"
 > git add .
 > git commit -m "*verklýsing*"
-> git push -u *"nafn á grein"*  - *NOTE: Án gæsalappa.*
+> git push origin "nafn á grein"  - *NOTE: Án gæsalappa.*
 ```
 
 `Pull`:
 ```
 > cd /*slóð á verkefni*
 > git init
-> git pull https://github.com/Kjarten/swind.git
+> git pull https://github.com/Kjarten/phonder.git
 ```
 --------------------------------------------------------------------------------------------------------------------------------------
 
