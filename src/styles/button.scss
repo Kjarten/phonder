@@ -1,0 +1,55 @@
+.button {
+  background-color: $gray;
+  color: $black;
+  border: none;
+  border-radius: 0.3125em;
+  // width: 15em;
+  // height: 2.5em;
+  font-family: $titlefont;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  transition-property: color, background-color;
+  transition-duration: 300ms;
+  transition-timing-function: ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  // @media (max-width: $bpoint__narrow) {
+  //  font-size: 21px;
+  //  width: 15em;
+  //  height: 2.5em;
+  // }
+
+  &:hover {
+    background-color: $darkgray;
+  }
+
+  // &--cart {
+  //  flex-direction: row;
+  //  background-color: $white;
+  //  border: 1px solid $black;
+  //  text-align: left;
+  //  width: auto;
+  //  padding: 0 10px;
+  //  margin: 0 10px;
+  //  display: flex;
+  //  align-items: center;
+  //  height: 40px;
+  //  font-size: 0.75em;
+
+  //  @media (max-width: $bpoint__slim) {
+  //    margin: $slim__boxes 0;
+  //  }
+
+  //  &:hover {
+  //    background-color: $red;
+  //    color: $black;
+  //  }
+  // }
+
+  // &__text {
+  //   margin: 0 0.5em;
+  // }
+}
