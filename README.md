@@ -63,6 +63,16 @@ Keyra `browser-sync`: - ATH! Það verður að nota `browser-sync` til að skoð
 > cd /*slóð á verkefni*
 > npm run dev
 ```
+Keyra `rollup`: - ATH! `rollup` keyrir líka `babel`.
+```
+> cd /*slóð á verkefni*
+> npm run rollup
+```
+Keyra `rollup-watch`: - ATH! `rollup` keyrir líka `babel`.
+```
+> cd /*slóð á verkefni*
+> npm run rollup-watch
+```
 --------------------------------------------------------------------------------------------------------------------------------------
 
 ## git:
