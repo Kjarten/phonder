@@ -29,7 +29,6 @@ node.js: https://nodejs.org/en/
 
 `eslint` - Er þegar sett upp í verkefninu, mæli með að setja upp `package`, til þess að fá villumeldingar í rauntíma. Í Atom má t.d. finna þetta í `Packages` > `Settings View` > `Install Packages/Themes` - `linter-eslint` frá `AtomLinter`
 
-Vantar að setja inn upplýsingum um `rollup` og `babel`.
 --------------------------------------------------------------------------------------------------------------------------------------
 
 ## Keyra tól:
