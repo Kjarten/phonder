@@ -24,4 +24,12 @@ img { /* stylelint-disable-line */
   max-width: 100%;
 }
 
+main { /* stylelint-disable-line */
+  max-width: $max-width;
+  margin: 0 auto;
+  padding-right: $gutter;
+  padding-left: $gutter;
+}
+
 // TODO import
+@import "index";
