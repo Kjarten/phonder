@@ -1,0 +1,71 @@
+@import "config";
+
+.lectures {
+  //max-width: $max-width;
+  margin: 0 auto;
+
+  // TODO media
+
+  &__row {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+    margin-bottom: $gutter;
+    margin-left: -($gutter / 2);
+    margin-right: -($gutter / 2);
+  }
+
+  &__col {
+    padding-right: $gutter / 2;
+    padding-left: $gutter / 2;
+    margin-bottom: $gutter;
+    width: 100%;
+
+    @media (min-width: $bpoint-narrow) {
+        width: 50%;
+    }
+
+    @media (min-width: $bpoint-wide) {
+        width: 33.33333%;
+    }
+
+  }
+
+}
+
+.lecture {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+
+  &__thumbnail {
+    height: 70%;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    background-color: $lightgray;
+    height: 30%;
+  }
+
+  &__category {
+    height: 30%;
+  }
+
+  &__detail {
+    height: 70%;
+    display: flex;
+    align-content: flex-start;
+  }
+
+  &__title {
+    width: 80%;
+  }
+
+  &__finished {
+    width: 20%;
+  }
+
+}

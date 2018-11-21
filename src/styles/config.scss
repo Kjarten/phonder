@@ -1,4 +1,6 @@
 $max-width: 1200px;
+$bpoint-narrow: 501px;
+$bpoint-wide: 1001px;
 $gutter: 20px;
 
 //div {
@@ -16,6 +18,8 @@ $darkgreen: #1a1;
 $yellow: #fcffd2;
 $red: #cc9694;
 $white: rgba(255, 255, 255, 0.6);
+
+$transition: 300ms ease-in-out;
 
 // Font sizes: 16 24 32 48
 
