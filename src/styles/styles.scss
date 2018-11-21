@@ -29,7 +29,15 @@ main { /* stylelint-disable-line */
   margin: 0 auto;
   padding-right: $gutter;
   padding-left: $gutter;
+
+  @media (min-width: $max-width) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
 }
+
 
 // TODO import
 @import "index";
+@import "header";

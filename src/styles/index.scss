@@ -7,7 +7,6 @@
   // TODO media
 
   &__row {
-    width: 100%;
     display: flex;
     flex-wrap: wrap;
 
@@ -48,6 +47,7 @@
     flex-direction: column;
     background-color: $lightgray;
     height: 30%;
+    padding: 0 ($gutter / 2);
   }
 
   &__category {
@@ -57,15 +57,16 @@
   &__detail {
     height: 70%;
     display: flex;
+    justify-content: space-between;
     align-content: flex-start;
   }
 
   &__title {
-    width: 80%;
+    //width: 80%;
   }
 
   &__finished {
-    width: 20%;
+    //width: 20%;
   }
 
 }
