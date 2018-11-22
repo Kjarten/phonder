@@ -1,5 +1,27 @@
 //import List from './lib/list';
 
+const API_URL = '../lectures.json';
+
+var prufa
+
+fetch(API_URL)
+.then((response) => {
+  if (response.ok) {
+    return response.json();
+  }
+  throw new Error('Villa kom upp');
+})
+.then((data) => {
+  prufa = data.lectures;
+  //console.log(data.lectures);
+  console.log('Máni þekkir tölvunarfræðinginn');
+  //displayDomain(data.results);
+})
+.catch(() => {
+  console.log('Máni þekkir tölvunarfræðinginn Óla');
+});
+
+console.log(prufa);
 // Bý til vigur sem geymir upplýsingar um hvað hefur verið smellt á:
 let binFilter = [0, 0, 0];
 
@@ -197,6 +219,8 @@ function el(element, type, className, clickHandler) {
   };
 
 })();
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
   //const page = document.querySelector('body'); //Frá OSK
