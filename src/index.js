@@ -1,6 +1,6 @@
 //import List from './lib/list';
 
-    // Bý til vigur sem geymir upplýsingar um hvað hefur verið smellt á:
+// Bý til vigur sem geymir upplýsingar um hvað hefur verið smellt á:
 let binFilter = [0, 0, 0];
 
 const program = (() => {
@@ -29,7 +29,7 @@ const program = (() => {
     //lecture[12].addEventListener('click', navigate());
 
   }
-//buttonL er bara test nafn
+  //buttonL er bara test nafn
   function buttonL() {
     const lectures = document.querySelector('.lectures');
     const lecture = lectures.querySelectorAll('.lecture');
@@ -55,17 +55,17 @@ const program = (() => {
     // Breytum staki í streng, eftir því hvað hefur verið smellt á:
 
     switch(value) {
-    case 'css':
-    binFilter[0] = 'css';
-    break;
+      case 'html':
+      binFilter[0] = 'html';
+      break;
 
-    case 'html':
-    binFilter[1] = 'html';
-    break;
+      case 'css':
+      binFilter[1] = 'css';
+      break;
 
-    case 'javascript':
-    binFilter[2] = 'javascript';
-    break;
+      case 'javascript':
+      binFilter[2] = 'javascript';
+      break;
     }
     // Ef allir takkar eru gráir, þá á að birta alla rununa:
     const zeroSUM = binFilter[0]+binFilter[1]+binFilter[2];
@@ -74,12 +74,14 @@ const program = (() => {
 
       binFilter = [1, 1, 1];
     }
-
+    console.log(binFilter);
     deleteItem(binFilter);
-    }
+  }
 
   // Hreinsum alla lecture__col til að setja upp aftur miðað við binFilter
   function deleteItem(binFilter) {
+
+    //Þessi function virkar.
 
     const lectures__row = document.querySelector('.lectures__row');
 
@@ -89,99 +91,99 @@ const program = (() => {
     console.log('Máni, hringdu þegar þú sérð þetta');
 
     add(binFilter);
-    }
+  }
 
   function add(binFilter) {
 
+    row_el = el('div', '0', 'lectures__row', '0');
+    lectures.append(row_el);
+
     //let catCat = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    let catCat = ['css', 'x', 'x', 'css', 'x', 'x', 'x', 'x'];
+    let catCat = ['html', 'html', 'html', 'css', 'css', 'css', 'javascript', 'javascript'];
 
     //Leita í lectures.json, finna hvern category og setja inn í vigur
     //getum notað 'html', 'javascript' og 'css'
 
     // for loop upp í fjölda lectures, ef category = binFilter þá skrifar hún
     // streng inn í vigur, annars 0.
-
     for (i = 0; i <= catCat.length; i += 1 ) {
-      if (catCat[i] == binFilter[0]) {
-        catCat[i] = binFilter[0];
-      } else {
-        catCat [i] = 'c';
+      switch(catCat[i]) {
+        case binFilter[0]:
+        catCat[i] = binFilter[0]
+        takeFive(row_el);
+        console.log('html')
+        break;
+        case binFilter[1]:
+        catCat[i] = binFilter[1]
+        takeFive(row_el);
+        console.log('css')
+        break;
+        case binFilter[2]:
+        catCat[i] = binFilter[2]
+        takeFive(row_el);
+        console.log('JavaScript')
+        break;
       }
     }
 
-      //Smíðum síðan nýja lectures__col og náum í category etc. frá lecture.json
+    console.log(catCat);
+}
 
-    console.log('Máni...Hringja!');
-    //const items = document.querySelector('.items');
+function takeFive(row_el) {;
+    //Smíðum síðan nýja lectures__col og náum í category etc. frá lecture.json
+    // Þetta eru öll elemntin sem Máni setti inn í html:
+    col_el = el('div', '0', 'lectures__col', '0');
+    section_el = el('section', '0', 'lecture', 'click');
+    thumb_el = el('div', '0', 'lecture__thumbnail', '0');
+    img_el = el('img', '0', 'img__thumbnail', '0'); //Hér þurfum við að leita í lecture.json
+    info_el = el('div', '0', 'lecture__info', '0');
+    category_el = el('div', '0', 'lecture__category', '0');
+    h3_el = el('h3', '0', '0', '0');
+    h3Text_el = document.createTextNode('value'); //Hér þurfum við að leita í lecture.json
+    detail_el = el('div', '0', 'lecture__detail', '0');
+    title_el = el('div', '0', 'lecture__title', '0');
+    h2Text_el = document.createTextNode('value'); //Hér þurfum við að leita í lecture.json
 
-  //  for(binThumb) //Fyrir öll slug active
+    //Röðum upp:
+    row_el.append(col_el);
+    col_el.append(section_el);
+    section_el.append(thumb_el, info_el);
+    thumb_el.append(img_el);
+    info_el.append(category_el, detail_el);
+    category_el.append(h3_el);
 
-  //    switch(binThumb) {
+  /*
+  //Þarf að bæta við þegar OK merkið er komið:
+  if ( x == 1) {
+  finished_el = el('div', '0', 'lecture__finished', '0');
+  marker_el = document.createTextNode(value); //Hér þurfum við að leita í lecture.json
 
-//        }
-      }
-
-/*
-// Þetta eru öll elemntin sem Máni setti inn í html:
-col_el = el('div', '0', 'lectures__col', '0');
-section_el = el('section', '0', 'lecture', 'click');
-thumb_el = el('div', '0', 'lecture__thumbnail', '0');
-img_el = el('img', '0', 'img__thumbnail', '0'); //Hér þurfum við að leita í lecture.json
-info_el = el('div', '0', 'lecture__info', '0');
-category_el = el('div', '0', 'lecture__category', '0');
-h3_el = el('h3', '0', '0', '0');
-h3Text_el = document.createTextNode(value); //Hér þurfum við að leita í lecture.json
-detail_el = el('div', '0', 'lecture__detail', '0');
-title_el = el('div', '0', 'lecture__title', '0');
-h2Text_el = document.createTextNode(value); //Hér þurfum við að leita í lecture.json
-
-//Röðum upp:
-items.append(col_el);
-col_el.append(section_el);
-section_el.append(thumb_el, info_el);
-thumb_el.append(img_el);
-info_el.append(category_el, detail_el);
-category_el.append(h3_el);
-detail_el.append(title_el, finished_el);
-title_el.append(h2Text_el);
-finished_el.append(marker_el);
-
-//Ef element vigur gildi er 1
-if ( x == 1) {
-finished_el = el('div', '0', 'lecture__finished', '0');
-marker_el = document.createTextNode(value); //Hér þurfum við að leita í lecture.json
-
-detail_el.append(title_el, finished_el);
-title_el.append(h2Text_el);
-finished_el.append(marker_el);
-
+  detail_el.append(title_el, finished_el);
+  title_el.append(h2Text_el);
+  finished_el.append(marker_el);
 } else {
 detail_el.append(title_el);
 title_el.append(h2Text_el);
-
+*/
 }
 
-}
-
-
-//tekur inn
 function el(element, type, className, clickHandler) {
 
-const el = document.createElement(element);
-el.setAttribute('class', className);
-if (type != 0) {
-el.setAttribute('type', type);
-}
-if (className == 'item__button') {
-el.addEventListener(clickHandler, deleteItem);
-} else if (className == 'item__checkbox') {
-el.addEventListener(clickHandler, finish);
-} else if (className == 'item__text') {
-el.addEventListener(clickHandler, edit);
-}
-return el;
-*/
+  const el = document.createElement(element);
+  el.setAttribute('class', className);
+  //if (type != 0) {
+  //el.setAttribute('type', type);
+  //}
+  if (clickHandler != 0) {
+    el.addEventListener(clickHandler, navigate);
+  } //else if (className == 'item__checkbox') {
+    //el.addEventListener(clickHandler, finish);
+    //} else if (className == 'item__text') {
+    //el.addEventListener(clickHandler, edit);
+    //}
+    return el;
+  }
+
   function navigate(e) {
 
     //Hér þarf að vísa á rétta slóð.
@@ -189,10 +191,10 @@ return el;
 
   }
 
-return {
+  return {
 
-  init,
-};
+    init,
+  };
 
 })();
 
@@ -208,12 +210,12 @@ document.addEventListener('DOMContentLoaded', () => {
   //program.init(lectures, buttons); - Tímabundið
   program.init(lectures);
 
-/* Frá OSK
+  /* Frá OSK
   if (isLecturePage) {
 
-  } else {
-    const list = new List();
-    list.load();
-  }
-  */
+} else {
+const list = new List();
+list.load();
+}
+*/
 });
