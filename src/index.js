@@ -46,7 +46,7 @@ const program = (() => {
     lecture[7].addEventListener('click', navigate);
     //lecture[8].addEventListener('click', navigate());
     //lecture[9].addEventListener('click', navigate());
-    //lecture[10].addEventListener('click', navigate());/home/didrik/Tol/vefforritun/verkefni/h02/phonder
+    //lecture[10].addEventListener('click', navigate());
     //lecture[11].addEventListener('click', navigate());
     //lecture[12].addEventListener('click', navigate());
 
