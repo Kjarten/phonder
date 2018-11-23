@@ -2,26 +2,6 @@
 
 const API_URL = '../lectures.json';
 
-var prufa
-
-fetch(API_URL)
-.then((response) => {
-  if (response.ok) {
-    return response.json();
-  }
-  throw new Error('Villa kom upp');
-})
-.then((data) => {
-  prufa = data.lectures;
-  //console.log(data.lectures);
-  console.log('Máni þekkir tölvunarfræðinginn');
-  //displayDomain(data.results);
-})
-.catch(() => {
-  console.log('Máni þekkir tölvunarfræðinginn Óla');
-});
-
-console.log(prufa);
 // Bý til vigur sem geymir upplýsingar um hvað hefur verið smellt á:
 let binFilter = [0, 0, 0];
 
@@ -70,55 +50,57 @@ const program = (() => {
 
   }
 
-  function filter(value, binFilter) {
+  function takeFive(row_el, tempList) {;
+      //Smíðum síðan nýja lectures__col og náum í category etc. frá lecture.json
+      // Þetta eru öll elemntin sem Máni setti inn í html:
+      console.log('all the bitches');
+      console.log(tempList["title"]);
 
-    console.log('Máni filter')
+      col_el = el('div', '0', 'lectures__col', '0');
+      section_el = el('section', '0', 'lecture', 'click');
+      thumb_el = el('div', '0', 'lecture__thumbnail', '0');
+      img_el = el('img', '0', 'img__thumbnail', '0'); //Hér þurfum við að leita í lecture.json
+      info_el = el('div', '0', 'lecture__info', '0');
+      category_el = el('div', '0', 'lecture__category', '0');
+      h3_el = el('h3', '0', '0', '0');
+      h3Text_el = document.createTextNode(tempList["category"]); //Hér þurfum við að leita í lecture.json
+      detail_el = el('div', '0', 'lecture__detail', '0');
+      title_el = el('div', '0', 'lecture__title', '0');
+      h2_el = el('h3', '0', '0', '0');
+      h2Text_el = document.createTextNode(tempList["title"]); //Hér þurfum við að leita í lecture.json
 
-    // Breytum staki í streng, eftir því hvað hefur verið smellt á:
+      //Röðum upp:
+      row_el.append(col_el);
+      col_el.append(section_el);
+      section_el.append(thumb_el, info_el);
+      thumb_el.append(img_el);
+      info_el.append(category_el, detail_el);
+      category_el.append(h3_el);
+      h3_el.append(h3Text_el);
+      detail_el.append(title_el);
+      title_el.append(h2_el);
+      h2_el.append(h2Text_el);
 
-    switch(value) {
-      case 'html':
-      binFilter[0] = 'html';
-      break;
+    /*
+    //Þarf að bæta við þegar OK merkið er komið:
+    if ( x == 1) {
+    finished_el = el('div', '0', 'lecture__finished', '0');
+    marker_el = document.createTextNode(value); //Hér þurfum við að leita í lecture.json
 
-      case 'css':
-      binFilter[1] = 'css';
-      break;
-
-      case 'javascript':
-      binFilter[2] = 'javascript';
-      break;
-    }
-    // Ef allir takkar eru gráir, þá á að birta alla rununa:
-    const zeroSUM = binFilter[0]+binFilter[1]+binFilter[2];
-
-    if (zeroSUM == 0) {
-
-      binFilter = [1, 1, 1];
-    }
-    console.log(binFilter);
-    deleteItem(binFilter);
+    detail_el.append(title_el, finished_el);
+    title_el.append(h2Text_el);
+    finished_el.append(marker_el);
+  } else {
+  detail_el.append(title_el);
+  title_el.append(h2Text_el);
+  */
   }
 
-  // Hreinsum alla lecture__col til að setja upp aftur miðað við binFilter
-  function deleteItem(binFilter) {
-
-    //Þessi function virkar.
-
-    const lectures__row = document.querySelector('.lectures__row');
-
-    let parentDelete = lectures__row.parentElement;
-    parentDelete.removeChild(lectures__row);
-
-    console.log('Máni, hringdu þegar þú sérð þetta');
-
-    add(binFilter);
-  }
-
-  function add(binFilter) {
+  function add(data) {
 
     row_el = el('div', '0', 'lectures__row', '0');
     lectures.append(row_el);
+    console.log('bitches');
 
     //let catCat = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     let catCat = ['html', 'html', 'html', 'css', 'css', 'css', 'javascript', 'javascript'];
@@ -128,66 +110,96 @@ const program = (() => {
 
     // for loop upp í fjölda lectures, ef category = binFilter þá skrifar hún
     // streng inn í vigur, annars 0.
+    binFilter = [0, 'css', 0];
+
     for (i = 0; i <= catCat.length; i += 1 ) {
+
       switch(catCat[i]) {
         case binFilter[0]:
         catCat[i] = binFilter[0]
-        takeFive(row_el);
+        takeFive(row_el, data[i]);
         console.log('html')
         break;
         case binFilter[1]:
         catCat[i] = binFilter[1]
-        takeFive(row_el);
+        takeFive(row_el, data[i]);
         console.log('css')
         break;
         case binFilter[2]:
         catCat[i] = binFilter[2]
-        takeFive(row_el);
+        takeFive(row_el, data[i]);
         console.log('JavaScript')
         break;
       }
     }
 
     console.log(catCat);
+  }
+
+function fetchData() {
+  fetch(API_URL)
+  .then((response) => {
+    if (response.ok) {
+      return response.json();
+    }
+    throw new Error('Villa kom upp');
+  })
+  .then((data) => {
+    console.log('Máni þekkir tölvunarfræðinginn Arnar');
+    console.log(data.lectures)
+    add(data.lectures);
+    console.log('Máni þekkir tölvunarfræðinginn Arnar');
+  })
+  .catch(() => {
+    console.log('Máni þekkir tölvunarfræðinginn Óla');
+  });
 }
 
-function takeFive(row_el) {;
-    //Smíðum síðan nýja lectures__col og náum í category etc. frá lecture.json
-    // Þetta eru öll elemntin sem Máni setti inn í html:
-    col_el = el('div', '0', 'lectures__col', '0');
-    section_el = el('section', '0', 'lecture', 'click');
-    thumb_el = el('div', '0', 'lecture__thumbnail', '0');
-    img_el = el('img', '0', 'img__thumbnail', '0'); //Hér þurfum við að leita í lecture.json
-    info_el = el('div', '0', 'lecture__info', '0');
-    category_el = el('div', '0', 'lecture__category', '0');
-    h3_el = el('h3', '0', '0', '0');
-    h3Text_el = document.createTextNode('value'); //Hér þurfum við að leita í lecture.json
-    detail_el = el('div', '0', 'lecture__detail', '0');
-    title_el = el('div', '0', 'lecture__title', '0');
-    h2Text_el = document.createTextNode('value'); //Hér þurfum við að leita í lecture.json
+// Hreinsum alla lecture__col til að setja upp aftur miðað við binFilter
+function deleteItem(binFilter) {
 
-    //Röðum upp:
-    row_el.append(col_el);
-    col_el.append(section_el);
-    section_el.append(thumb_el, info_el);
-    thumb_el.append(img_el);
-    info_el.append(category_el, detail_el);
-    category_el.append(h3_el);
+  //Þessi function virkar.
 
-  /*
-  //Þarf að bæta við þegar OK merkið er komið:
-  if ( x == 1) {
-  finished_el = el('div', '0', 'lecture__finished', '0');
-  marker_el = document.createTextNode(value); //Hér þurfum við að leita í lecture.json
+  const lectures__row = document.querySelector('.lectures__row');
 
-  detail_el.append(title_el, finished_el);
-  title_el.append(h2Text_el);
-  finished_el.append(marker_el);
-} else {
-detail_el.append(title_el);
-title_el.append(h2Text_el);
-*/
+  let parentDelete = lectures__row.parentElement;
+  parentDelete.removeChild(lectures__row);
+
+  console.log('Máni, hringdu þegar þú sérð þetta');
+
+  fetchData();
 }
+
+function filter(value, binFilter) {
+
+  console.log('Máni filter')
+
+  // Breytum staki í streng, eftir því hvað hefur verið smellt á:
+
+  switch(value) {
+    case 'html':
+    binFilter[0] = 'html';
+    break;
+
+    case 'css':
+    binFilter[1] = 'css';
+    break;
+
+    case 'javascript':
+    binFilter[2] = 'javascript';
+    break;
+  }
+  // Ef allir takkar eru gráir, þá á að birta alla rununa:
+  const zeroSUM = binFilter[0]+binFilter[1]+binFilter[2];
+
+  if (zeroSUM == 0) {
+
+    binFilter = [1, 1, 1];
+  }
+  console.log(binFilter);
+  deleteItem(binFilter);
+}
+
 
 function el(element, type, className, clickHandler) {
 
