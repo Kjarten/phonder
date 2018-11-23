@@ -1,5 +1,5 @@
 .button {
-  background-color: $gray;
+  background-color: $lightgray;
   color: $black;
   border: none;
   border-radius: 0.3125em;
@@ -15,12 +15,18 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: $gutter;
 
   // @media (max-width: $bpoint__narrow) {
   //  font-size: 21px;
   //  width: 15em;
   //  height: 2.5em;
   // }
+
+  &__container {
+    display: flex;
+    justify-content: center;
+  }
 
   &:hover {
     background-color: $darkgray;
