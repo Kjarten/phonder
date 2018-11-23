@@ -1,4 +1,5 @@
 //import List from './lib/list';
+//import empty from './lib/helpers';
 
 const API_URL = '../lectures.json';
 
@@ -8,15 +9,13 @@ let binFilter = [0, 0, 0];
 const program = (() => {
   let lectures;
 
-  //function init(_lectures, _buttons) { - Tímabundið
-  function init(_lectures) {
+  function init(_lectures, _buttons) {
     lectures = _lectures;
-    //_form.addEventListener('submit', formHandler);
+    buttons = _buttons;
 
-    // Hlustum eftir því hvort einhver smelli á fyrirlestur og beinum aðila á
-    // fyrirlestrar síðu með function navigate:
     const lecture = _lectures.querySelectorAll('.lecture');
-    lecture[0].addEventListener('click', buttonL); //Tímabundið
+
+    lecture[0].addEventListener('click', navigate);
     lecture[1].addEventListener('click', navigate);
     lecture[2].addEventListener('click', navigate);
     lecture[3].addEventListener('click', navigate);
@@ -30,27 +29,17 @@ const program = (() => {
     lecture[11].addEventListener('click', navigate);
     lecture[12].addEventListener('click', navigate);
 
+    const cssButton = _buttons.querySelector('.cssButton');
+    cssButton.addEventListener('click', butt);
+
+    const htmlButton = _buttons.querySelector('.htmlButton');
+    htmlButton.addEventListener('click', butt);
+
+    const jsButton = _buttons.querySelector('.jsButton');
+    jsButton.addEventListener('click', butt);
+
+}
     //fetchData(['html','css','javascript'])
-
-  }
-  //buttonL er bara test nafn
-  function buttonL() {
-    const lectures = document.querySelector('.lectures');
-    const lecture = lectures.querySelectorAll('.lecture');
-    lecture[0].addEventListener('click', filter('javascript', binFilter));
-
-    // Hlustum eftir því hvort einhver smelli á takka og hefjumst handa við að
-    // reita arfa:
-    //const css__button = _buttons.querySelectorAll('.css__button');
-    //css__button.addEventListener('click', filter('css', binFilter));
-
-    //const html__button = _buttons.querySelectorAll('.html__button');
-    //html__button.addEventListener('click', filter('html', binFilter));
-
-    //const javascript__button = _buttons.querySelectorAll('.javascript__button');
-    //javascript__button.addEventListener('click', filter('javascript', binFilter));
-
-  }
 
   function el(element, className, clickHandler) {
 
@@ -141,6 +130,7 @@ const program = (() => {
         break;
       }
     }
+    program.init();
   }
 
 function fetchData(binFilter) {
@@ -161,19 +151,16 @@ function fetchData(binFilter) {
 
 // Hreinsum alla lecture__col til að setja upp aftur miðað við binFilter
 function deleteItem(binFilter) {
-
-  const lectures__row = document.querySelector('.lectures__row');
-
-  let parentDelete = lectures__row.parentElement;
+  console.log('Máni 1')
+  let lectures__row = document.querySelector('.lectures__row');
+  console.log('Máni 2')
+  parentDelete = lectures__row.parentElement;
   parentDelete.removeChild(lectures__row);
-
+  console.log('Máni 3')
   fetchData(binFilter);
 }
 
 function filter(value, binFilter) {
-
-  console.log('Máni filter')
-
   // Breytum staki í streng, eftir því hvað hefur verið smellt á:
 
   switch(value) {
@@ -201,6 +188,25 @@ function filter(value, binFilter) {
   deleteItem(binFilter);
 }
 
+//buttonL er bara test nafn
+function butt(binFilter) {
+
+  console.log(this.className)
+  let tempClass = this.className;
+
+  switch(tempClass) {
+    case 'htmlButton':
+    filter('html', binFilter);
+    break;
+    case 'cssButton':
+    filter('css', binFilter);
+    break;
+    case 'jsButton':
+    filter('javascript', binFilter);
+    break;
+  }
+}
+
   function navigate(e) {
 
     //Hér þarf að vísa á rétta slóð.
@@ -220,12 +226,9 @@ document.addEventListener('DOMContentLoaded', () => {
   //const isLecturePage = page.classList.contains('lecture-page'); //Frá OSK
 
   const lectures = document.querySelector('.lectures');
-  //const buttons = document.querySelector('.buttons'); - Tímabundið
+  const buttons = document.querySelector('.buttons');
 
-  console.log('Sæll Máni');
-
-  //program.init(lectures, buttons); - Tímabundið
-  program.init(lectures);
+  program.init(lectures, buttons);
 
   /* Frá OSK
   if (isLecturePage) {
