@@ -24,18 +24,20 @@ const program = (() => {
     lecture[5].addEventListener('click', navigate);
     lecture[6].addEventListener('click', navigate);
     lecture[7].addEventListener('click', navigate);
-    //lecture[8].addEventListener('click', navigate());
-    //lecture[9].addEventListener('click', navigate());
-    //lecture[10].addEventListener('click', navigate());
-    //lecture[11].addEventListener('click', navigate());
-    //lecture[12].addEventListener('click', navigate());
+    lecture[8].addEventListener('click', navigate);
+    lecture[9].addEventListener('click', navigate);
+    lecture[10].addEventListener('click', navigate);
+    lecture[11].addEventListener('click', navigate);
+    lecture[12].addEventListener('click', navigate);
+
+    //fetchData(['html','css','javascript'])
 
   }
   //buttonL er bara test nafn
   function buttonL() {
     const lectures = document.querySelector('.lectures');
     const lecture = lectures.querySelectorAll('.lecture');
-    lecture[0].addEventListener('click', filter('css', binFilter));
+    lecture[0].addEventListener('click', filter('javascript', binFilter));
 
     // Hlustum eftir því hvort einhver smelli á takka og hefjumst handa við að
     // reita arfa:
@@ -50,20 +52,14 @@ const program = (() => {
 
   }
 
-  function el(element, type, className, clickHandler) {
+  function el(element, className, clickHandler) {
 
     const el = document.createElement(element);
     el.setAttribute('class', className);
-    //if (type != 0) {
-    //el.setAttribute('type', type);
-    //}
+
     if (clickHandler != 0) {
       el.addEventListener(clickHandler, navigate);
-    } //else if (className == 'item__checkbox') {
-      //el.addEventListener(clickHandler, finish);
-      //} else if (className == 'item__text') {
-      //el.addEventListener(clickHandler, edit);
-      //}
+    }
       return el;
     }
 
@@ -71,18 +67,20 @@ const program = (() => {
       //Smíðum síðan nýja lectures__col og náum í category etc. frá lecture.json
       // Þetta eru öll elemntin sem Máni setti inn í html:
 
-      col_el = el('div', '0', 'lectures__col', '0');
-      section_el = el('section', '0', 'lecture', 'click');
-      thumb_el = el('div', '0', 'lecture__thumbnail', '0');
-      img_el = el('img', '0', 'img__thumbnail', '0'); //Hér þurfum við að leita í lecture.json
-      img_el.src = "../" + tempList["thumbnail"]
-      info_el = el('div', '0', 'lecture__info', '0');
-      category_el = el('div', '0', 'lecture__category', '0');
-      h3_el = el('h3', '0', '0', '0');
+      col_el = el('div', 'lectures__col', '0');
+      section_el = el('section', 'lecture', 'click');
+      thumb_el = el('div', 'lecture__thumbnail', '0');
+      img_el = el('img', 'img__thumbnail', '0');
+      if (typeof tempList["thumbnail"] != "undefined") {
+      img_el.src = "../" + tempList["thumbnail"];
+      }
+      info_el = el('div', 'lecture__info', '0');
+      category_el = el('div', 'lecture__catContainer', '0');
+      h3_el = el('h3', 'lecture__category', '0');
       h3Text_el = document.createTextNode(tempList["category"]);
-      detail_el = el('div', '0', 'lecture__detail', '0');
-      title_el = el('div', '0', 'lecture__title', '0');
-      h2_el = el('h3', '0', '0', '0');
+      detail_el = el('div', 'lecture__detail', '0');
+      title_el = el('div', 'lecture__titleContainer', '0');
+      h2_el = el('h3', 'lecture__title', '0');
       h2Text_el = document.createTextNode(tempList["title"]);
 
       //Röðum upp:
@@ -114,47 +112,38 @@ const program = (() => {
       */
   }
 
-  function add(data) {
+  function add(data, binFilter) {
 
-    row_el = el('div', '0', 'lectures__row', '0');
+    row_el = el('div', 'lectures__row', '0');
     lectures.append(row_el);
-    console.log('bitches');
-
-    //let catCat = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    let catCat = ['html', 'html', 'html', 'css', 'css', 'css', 'javascript', 'javascript'];
 
     //Leita í lectures.json, finna hvern category og setja inn í vigur
-    //getum notað 'html', 'javascript' og 'css'
+    let catCat= new Array(data.length);
 
-    // for loop upp í fjölda lectures, ef category = binFilter þá skrifar hún
-    // streng inn í vigur, annars 0.
-    binFilter = [0, 'css', 0];
+    for (j = 0; j < data.length; j += 1 ) {
+      catCat[j] = data[j]["category"];
+    }
 
     for (i = 0; i <= catCat.length; i += 1 ) {
 
       switch(catCat[i]) {
         case binFilter[0]:
-        catCat[i] = binFilter[0]
         takeFive(row_el, data[i]);
         console.log('html')
         break;
         case binFilter[1]:
-        catCat[i] = binFilter[1]
         takeFive(row_el, data[i]);
         console.log('css')
         break;
         case binFilter[2]:
-        catCat[i] = binFilter[2]
         takeFive(row_el, data[i]);
         console.log('JavaScript')
         break;
       }
     }
-
-    console.log(catCat);
   }
 
-function fetchData() {
+function fetchData(binFilter) {
   fetch(API_URL)
   .then((response) => {
     if (response.ok) {
@@ -163,10 +152,7 @@ function fetchData() {
     throw new Error('Villa kom upp');
   })
   .then((data) => {
-    console.log('Máni þekkir tölvunarfræðinginn Arnar');
-    console.log(data.lectures)
-    add(data.lectures);
-    console.log('Máni þekkir tölvunarfræðinginn Arnar');
+    add(data.lectures, binFilter);
   })
   .catch(() => {
     console.log('Máni þekkir tölvunarfræðinginn Óla');
@@ -176,16 +162,12 @@ function fetchData() {
 // Hreinsum alla lecture__col til að setja upp aftur miðað við binFilter
 function deleteItem(binFilter) {
 
-  //Þessi function virkar.
-
   const lectures__row = document.querySelector('.lectures__row');
 
   let parentDelete = lectures__row.parentElement;
   parentDelete.removeChild(lectures__row);
 
-  console.log('Máni, hringdu þegar þú sérð þetta');
-
-  fetchData();
+  fetchData(binFilter);
 }
 
 function filter(value, binFilter) {
@@ -210,16 +192,14 @@ function filter(value, binFilter) {
   // Ef allir takkar eru gráir, þá á að birta alla rununa:
   const zeroSUM = binFilter[0]+binFilter[1]+binFilter[2];
 
+  // Þarf að endurskoða
   if (zeroSUM == 0) {
 
-    binFilter = [1, 1, 1];
+    binFilter = ['html', 'css', 'javascript'];
   }
   console.log(binFilter);
   deleteItem(binFilter);
 }
-
-
-
 
   function navigate(e) {
 
@@ -234,8 +214,6 @@ function filter(value, binFilter) {
   };
 
 })();
-
-
 
 document.addEventListener('DOMContentLoaded', () => {
   //const page = document.querySelector('body'); //Frá OSK
