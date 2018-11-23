@@ -50,24 +50,40 @@ const program = (() => {
 
   }
 
+  function el(element, type, className, clickHandler) {
+
+    const el = document.createElement(element);
+    el.setAttribute('class', className);
+    //if (type != 0) {
+    //el.setAttribute('type', type);
+    //}
+    if (clickHandler != 0) {
+      el.addEventListener(clickHandler, navigate);
+    } //else if (className == 'item__checkbox') {
+      //el.addEventListener(clickHandler, finish);
+      //} else if (className == 'item__text') {
+      //el.addEventListener(clickHandler, edit);
+      //}
+      return el;
+    }
+
   function takeFive(row_el, tempList) {;
       //Smíðum síðan nýja lectures__col og náum í category etc. frá lecture.json
       // Þetta eru öll elemntin sem Máni setti inn í html:
-      console.log('all the bitches');
-      console.log(tempList["title"]);
 
       col_el = el('div', '0', 'lectures__col', '0');
       section_el = el('section', '0', 'lecture', 'click');
       thumb_el = el('div', '0', 'lecture__thumbnail', '0');
       img_el = el('img', '0', 'img__thumbnail', '0'); //Hér þurfum við að leita í lecture.json
+      img_el.src = "../" + tempList["thumbnail"]
       info_el = el('div', '0', 'lecture__info', '0');
       category_el = el('div', '0', 'lecture__category', '0');
       h3_el = el('h3', '0', '0', '0');
-      h3Text_el = document.createTextNode(tempList["category"]); //Hér þurfum við að leita í lecture.json
+      h3Text_el = document.createTextNode(tempList["category"]);
       detail_el = el('div', '0', 'lecture__detail', '0');
       title_el = el('div', '0', 'lecture__title', '0');
       h2_el = el('h3', '0', '0', '0');
-      h2Text_el = document.createTextNode(tempList["title"]); //Hér þurfum við að leita í lecture.json
+      h2Text_el = document.createTextNode(tempList["title"]);
 
       //Röðum upp:
       row_el.append(col_el);
@@ -78,22 +94,24 @@ const program = (() => {
       category_el.append(h3_el);
       h3_el.append(h3Text_el);
       detail_el.append(title_el);
-      title_el.append(h2_el);
+      title_el.append(h2_el); //Þarf að færa niður í if setningu
+      h2_el.append(h2Text_el); //Þarf að færa niður í if setningu
+
+      /*
+      //Þarf að bæta við þegar OK merkið er komið:
+      if ( x == 1) {
+      finished_el = el('div', '0', 'lecture__finished', '0');
+      marker_el = document.createTextNode(value); //Hér þurfum við að leita í lecture.json
+
+      detail_el.append(title_el, finished_el);
+      title_el.append(h2_el); //Þarf að færa niður í if setningu
       h2_el.append(h2Text_el);
-
-    /*
-    //Þarf að bæta við þegar OK merkið er komið:
-    if ( x == 1) {
-    finished_el = el('div', '0', 'lecture__finished', '0');
-    marker_el = document.createTextNode(value); //Hér þurfum við að leita í lecture.json
-
-    detail_el.append(title_el, finished_el);
-    title_el.append(h2Text_el);
-    finished_el.append(marker_el);
-  } else {
-  detail_el.append(title_el);
-  title_el.append(h2Text_el);
-  */
+      finished_el.append(marker_el);
+      } else {
+      detail_el.append(title_el);
+      title_el.append(h2_el); //Þarf að færa niður í if setningu
+      h2_el.append(h2Text_el);
+      */
   }
 
   function add(data) {
@@ -201,22 +219,7 @@ function filter(value, binFilter) {
 }
 
 
-function el(element, type, className, clickHandler) {
 
-  const el = document.createElement(element);
-  el.setAttribute('class', className);
-  //if (type != 0) {
-  //el.setAttribute('type', type);
-  //}
-  if (clickHandler != 0) {
-    el.addEventListener(clickHandler, navigate);
-  } //else if (className == 'item__checkbox') {
-    //el.addEventListener(clickHandler, finish);
-    //} else if (className == 'item__text') {
-    //el.addEventListener(clickHandler, edit);
-    //}
-    return el;
-  }
 
   function navigate(e) {
 
