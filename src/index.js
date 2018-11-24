@@ -1,9 +1,8 @@
 //import List from './lib/list';
-//import empty from './lib/helpers';
 
 const API_URL = '../lectures.json';
 
-const program = ((binFilter) => {
+const program = (() => {
 
   let lectures;
 
@@ -22,8 +21,11 @@ const program = ((binFilter) => {
     //Smíðum síðan nýja lectures__col og náum í category etc. frá lecture.json
     // Þetta eru öll elemntin sem Máni setti inn í html:
 
+    let slugID = tempList["slug"];
+
     col_el = el('div', 'lectures__col', '0');
     section_el = el('section', 'lecture', 'click');
+    section_el.setAttribute('id', slugID);
     thumb_el = el('div', 'lecture__thumbnail', '0');
     img_el = el('img', 'img__thumbnail', '0');
     if (typeof tempList["thumbnail"] != "undefined") {
@@ -67,12 +69,14 @@ const program = ((binFilter) => {
   */
 }
 
-function add(data, binFilter) {
+function add(data, binFilter, lectures, buttons) {
 
   console.log(binFilter);
-
   row_el = el('div', 'lectures__row', '0');
   lectures.append(row_el);
+
+  // Ef allir takkar eru gráir, þá á að birta alla rununa:
+  const zeroSUM = binFilter[0]+binFilter[1]+binFilter[2];
 
   //Leita í lectures.json, finna hvern category og setja inn í vigur
   let catCat= new Array(data.length);
@@ -81,27 +85,30 @@ function add(data, binFilter) {
     catCat[j] = data[j]["category"];
   }
 
-  for (i = 0; i <= catCat.length; i += 1 ) {
+  for (i = 0; i < catCat.length; i += 1 ) {
 
-    switch(catCat[i]) {
-      case binFilter[0]:
+    if (zeroSUM == 0) {
       takeFive(row_el, data[i]);
-      console.log('html')
-      break;
-      case binFilter[1]:
-      takeFive(row_el, data[i]);
-      console.log('css')
-      break;
-      case binFilter[2]:
-      takeFive(row_el, data[i]);
-      console.log('JavaScript')
-      break;
+    } else {
+      switch(catCat[i]) {
+        case binFilter[0]:
+        takeFive(row_el, data[i]);
+        break;
+        case binFilter[1]:
+        takeFive(row_el, data[i]);
+        break;
+        case binFilter[2]:
+        takeFive(row_el, data[i]);
+        break;
+      }
     }
   }
-  program.init(lectures, buttons, binFilter);
+  console.log('add1');
+  init(lectures, buttons, binFilter);
+  //console.log('add2');
 }
 
-function fetchData(binFilter) {
+function fetchData(binFilter, lectures, buttons) {
   fetch(API_URL)
   .then((response) => {
     if (response.ok) {
@@ -110,7 +117,7 @@ function fetchData(binFilter) {
     throw new Error('Villa kom upp');
   })
   .then((data) => {
-    add(data.lectures, binFilter);
+    add(data.lectures, binFilter, lectures, buttons);
   })
   .catch(() => {
     console.log('Máni þekkir tölvunarfræðinginn Arnar');
@@ -123,7 +130,7 @@ function deleteItem(binFilter) {
   parentDelete = lectures__row.parentElement;
   parentDelete.removeChild(lectures__row);
 
-  fetchData(binFilter);
+  fetchData(binFilter, lectures, buttons);
 }
 
 function filter(value, binFilter) {
@@ -155,21 +162,12 @@ function filter(value, binFilter) {
     break;
   }
 
-  console.log(binFilter);
-  // Ef allir takkar eru gráir, þá á að birta alla rununa:
-  const zeroSUM = binFilter[0]+binFilter[1]+binFilter[2];
-
-  // Þarf að endurskoða
-  if (zeroSUM == 0) {
-
-    binFilter = ['html', 'css', 'javascript'];
-  }
-  console.log(binFilter);
   deleteItem(binFilter);
 }
 
 //buttonL er bara test nafn
 function butt() {
+  console.log('butt');
 
   console.log(this.className)
   let tempClass = this.className;
@@ -177,23 +175,26 @@ function butt() {
   switch(tempClass) {
     case 'htmlButton':
     filter('html', binFilter);
+    console.log('button html')
     break;
 
     case 'cssButton':
     filter('css', binFilter);
+    console.log('button css')
     break;
 
     case 'jsButton':
     filter('javascript', binFilter);
+    console.log('button javascript')
     break;
   }
 }
 
-function navigate(e) {
+function navigate() {
+  let tempSlug = this.id;
+  let tempUrl = "../fyrirlestur.html?slug=" + tempSlug;
 
-  //Hér þarf að vísa á rétta slóð.
-  console.log('Máni Navigate');
-
+  window.location.href = tempUrl;
 }
 
 function init(_lectures, _buttons, _binFilter) {
@@ -225,13 +226,11 @@ function init(_lectures, _buttons, _binFilter) {
 
   const jsButton = _buttons.querySelector('.jsButton');
   jsButton.addEventListener('click', butt);
-
 }
-//fetchData(['html','css','javascript'])
 
 return {
 
-  init,
+  init, fetchData,
 
 };
 })();
@@ -245,8 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Bý til vigur sem geymir upplýsingar um hvað hefur verið smellt á:
   let binFilter = [0, 0, 0];
-
-  program.init(lectures, buttons, binFilter);
+  program.fetchData(binFilter, lectures, buttons);
 
   /* Frá OSK
   if (isLecturePage) {
