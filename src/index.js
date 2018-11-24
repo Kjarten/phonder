@@ -169,21 +169,29 @@ function filter(value, binFilter) {
 function butt() {
   console.log('butt');
 
-  console.log(this.className)
+  let tempID = this.id;
   let tempClass = this.className;
 
-  switch(tempClass) {
-    case 'htmlButton':
+  let activeButton = document.getElementById(tempID);
+
+  if (tempClass == 'button') {
+    activeButton.classList.add('button--active');
+  } else {
+    activeButton.setAttribute('class', 'button')
+  }
+
+  switch(tempID) {
+    case 'html':
     filter('html', binFilter);
     console.log('button html')
     break;
 
-    case 'cssButton':
+    case 'css':
     filter('css', binFilter);
     console.log('button css')
     break;
 
-    case 'jsButton':
+    case 'javascript':
     filter('javascript', binFilter);
     console.log('button javascript')
     break;
@@ -218,14 +226,18 @@ function init(_lectures, _buttons, _binFilter) {
   lecture[11].addEventListener('click', navigate);
   lecture[12].addEventListener('click', navigate);
 
-  const cssButton = _buttons.querySelector('.cssButton');
-  cssButton.addEventListener('click', butt);
+  const button = _buttons.querySelectorAll('.button');
+  button[0].addEventListener('click', butt);
+  button[1].addEventListener('click', butt);
+  button[2].addEventListener('click', butt);
 
-  const htmlButton = _buttons.querySelector('.htmlButton');
-  htmlButton.addEventListener('click', butt);
+  //cssButton.addEventListener('click', butt);
 
-  const jsButton = _buttons.querySelector('.jsButton');
-  jsButton.addEventListener('click', butt);
+  //const htmlButton = _buttons.querySelector('.htmlButton');
+  //htmlButton.addEventListener('click', butt);
+
+  //const jsButton = _buttons.querySelector('.jsButton');
+  //jsButton.addEventListener('click', butt);
 }
 
 return {
@@ -240,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //const isLecturePage = page.classList.contains('lecture-page'); //Frá OSK
 
   const lectures = document.querySelector('.lectures');
-  const buttons = document.querySelector('.buttons');
+  const buttons = document.querySelector('.button__container');
 
   // Bý til vigur sem geymir upplýsingar um hvað hefur verið smellt á:
   let binFilter = [0, 0, 0];
