@@ -1,10 +1,18 @@
-//import List from './lib/list';
+// import List from './lib/list';
 
 const API_URL = '../lectures.json';
+let checkDone;
 
 const program = (() => {
 
   let lectures;
+
+  //function lectureDone() {
+  //Hafði hugsað að vera með fall hérna, sem tæki við slögg úr localStorage og
+  //setti upp í vigur jafnstóran og fjöldi fyrirlestra. Í hver einasta skipti
+  //sem add er kallað, athugar hún hvort það sé nýtt slögg í localStorage og
+  //bætir því við á viðeigandi stað, þannig að það sé hægt að indexa listann.
+  //}
 
   function el(element, className, clickHandler) {
 
@@ -17,10 +25,9 @@ const program = (() => {
     return el;
   }
 
-  function takeFive(row_el, tempList) {;
+  function takeFive(row_el, tempList, checkDone) {;
     //Smíðum síðan nýja lectures__col og náum í category etc. frá lecture.json
-    // Þetta eru öll elemntin sem Máni setti inn í html:
-
+    console.log('takefive');
     let slugID = tempList["slug"];
 
     col_el = el('div', 'lectures__col', '0');
@@ -49,221 +56,215 @@ const program = (() => {
     category_el.append(h3_el);
     h3_el.append(h3Text_el);
     detail_el.append(title_el);
-    title_el.append(h2_el); //Þarf að færa niður í if setningu
-    h2_el.append(h2Text_el); //Þarf að færa niður í if setningu
 
-    /*
+    let checked = checkDone;
+
     //Þarf að bæta við þegar OK merkið er komið:
-    if ( x == 1) {
-    finished_el = el('div', '0', 'lecture__finished', '0');
-    marker_el = document.createTextNode(value); //Hér þurfum við að leita í lecture.json
-
-    detail_el.append(title_el, finished_el);
-    title_el.append(h2_el); //Þarf að færa niður í if setningu
-    h2_el.append(h2Text_el);
-    finished_el.append(marker_el);
-  } else {
-  detail_el.append(title_el);
-  title_el.append(h2_el); //Þarf að færa niður í if setningu
-  h2_el.append(h2Text_el);
-  */
-}
-
-function add(data, binFilter, lectures, buttons) {
-
-  console.log(binFilter);
-  row_el = el('div', 'lectures__row', '0');
-  lectures.append(row_el);
-
-  // Ef allir takkar eru gráir, þá á að birta alla rununa:
-  const zeroSUM = binFilter[0]+binFilter[1]+binFilter[2];
-
-  //Leita í lectures.json, finna hvern category og setja inn í vigur
-  let catCat= new Array(data.length);
-
-  for (j = 0; j < data.length; j += 1 ) {
-    catCat[j] = data[j]["category"];
+    if (checked == 1) {
+      finished_el = el('p', 'lecture__finished', '0');
+      marker_el = document.createTextNode("\u2713");
+      detail_el.append(title_el, finished_el);
+      title_el.append(h2_el);
+      h2_el.append(h2Text_el);
+      finished_el.append(marker_el);
+    } else {
+      detail_el.append(title_el);
+      title_el.append(h2_el);
+      h2_el.append(h2Text_el);
+    }
   }
 
-  for (i = 0; i < catCat.length; i += 1 ) {
+  function add(data, binFilter, lectures, buttons) {
 
-    if (zeroSUM == 0) {
-      takeFive(row_el, data[i]);
-    } else {
-      switch(catCat[i]) {
-        case binFilter[0]:
-        takeFive(row_el, data[i]);
-        break;
-        case binFilter[1]:
-        takeFive(row_el, data[i]);
-        break;
-        case binFilter[2]:
-        takeFive(row_el, data[i]);
-        break;
+    console.log(binFilter);
+    console.log('2');
+    row_el = el('div', 'lectures__row', '0');
+    lectures.append(row_el);
+
+    //Leita í lectures.json, finna hvern category og setja inn í vigur
+
+    //    if (Array.asArray(checkDone)) {
+    //      checkDone = checkDone
+    //    } else {
+    console.log('row');
+    checkDone = new Array(data.length);
+    //    }
+    catCat = new Array(data.length);
+
+    for (j = 0; j < data.length; j += 1 ) {
+      catCat[j] = data[j]["category"];
+      checkDone[j] = 1;
+    }
+
+    const zeroSUM = binFilter[0]+binFilter[1]+binFilter[2];
+    console.log('zero');
+    for (i = 0; i < catCat.length; i += 1 ) {
+
+      if (zeroSUM == 0) {
+        takeFive(row_el, data[i], checkDone[i]);
+      } else {
+        switch(catCat[i]) {
+          case binFilter[0]:
+          takeFive(row_el, data[i], checkDone[i]);
+          break;
+
+          case binFilter[1]:
+          takeFive(row_el, data[i], checkDone[i]);
+          break;
+
+          case binFilter[2]:
+          takeFive(row_el, data[i], checkDone[i]);
+          break;
+        }
       }
     }
-  }
-  console.log('add1');
-  init(lectures, buttons, binFilter);
-  //console.log('add2');
-}
-
-function fetchData(binFilter, lectures, buttons) {
-  fetch(API_URL)
-  .then((response) => {
-    if (response.ok) {
-      return response.json();
-    }
-    throw new Error('Villa kom upp');
-  })
-  .then((data) => {
-    add(data.lectures, binFilter, lectures, buttons);
-  })
-  .catch(() => {
-    console.log('Máni þekkir tölvunarfræðinginn Arnar');
-  });
-}
-
-// Hreinsum alla lecture__col til að setja upp aftur miðað við binFilter
-function deleteItem(binFilter) {
-  let lectures__row = document.querySelector('.lectures__row');
-  parentDelete = lectures__row.parentElement;
-  parentDelete.removeChild(lectures__row);
-
-  fetchData(binFilter, lectures, buttons);
-}
-
-function filter(value, binFilter) {
-  // Breytum staki í streng, eftir því hvað hefur verið smellt á:
-
-  switch(value) {
-    case 'html':
-    if (binFilter[0] == 0) {
-      binFilter[0] = 'html';
-    } else if (binFilter[0] == 'html') {
-      binFilter[0] = 0;
-    }
-    break;
-
-    case 'css':
-    if (binFilter[1] == 0) {
-      binFilter[1] = 'css';
-    } else if (binFilter[1] == 'css') {
-      binFilter[1] = 0;
-    }
-    break;
-
-    case 'javascript':
-    if (binFilter[2] == 0) {
-      binFilter[2] = 'javascript';
-    } else if (binFilter[2] == 'javascript') {
-      binFilter[2] = 0;
-    }
-    break;
+    init(lectures, buttons, binFilter);
   }
 
-  deleteItem(binFilter);
-}
-
-//buttonL er bara test nafn
-function butt() {
-  console.log('butt');
-
-  let tempID = this.id;
-  let tempClass = this.className;
-
-  let activeButton = document.getElementById(tempID);
-
-  if (tempClass == 'button') {
-    activeButton.classList.add('button--active');
-  } else {
-    activeButton.setAttribute('class', 'button')
+  function fetchData(binFilter, lectures, buttons) {
+    fetch(API_URL)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error('Villa kom upp');
+    })
+    .then((data) => {
+      add(data.lectures, binFilter, lectures, buttons);
+    })
+    .catch(() => {
+      console.log('Máni þekkir tölvunarfræðinginn Arnar');  //Fyrir debug
+    });
   }
 
-  switch(tempID) {
-    case 'html':
-    filter('html', binFilter);
-    console.log('button html')
-    break;
+  // Hreinsum alla lecture__col til að setja upp aftur miðað við binFilter
+  function deleteItem(binFilter) {
+    let lectures__row = document.querySelector('.lectures__row');
+    parentDelete = lectures__row.parentElement;
+    parentDelete.removeChild(lectures__row);
 
-    case 'css':
-    filter('css', binFilter);
-    console.log('button css')
-    break;
-
-    case 'javascript':
-    filter('javascript', binFilter);
-    console.log('button javascript')
-    break;
+    fetchData(binFilter, lectures, buttons);
   }
-}
 
-function navigate() {
-  let tempSlug = this.id;
-  let tempUrl = "../fyrirlestur.html?slug=" + tempSlug;
+  function filter(value, binFilter) {
+    // Breytum staki í streng, eftir því hvað hefur verið smellt á:
 
-  window.location.href = tempUrl;
-}
+    switch(value) {
+      case 'html':
+      if (binFilter[0] == 0) {
+        binFilter[0] = 'html';
+      } else if (binFilter[0] == 'html') {
+        binFilter[0] = 0;
+      }
+      break;
 
-function init(_lectures, _buttons, _binFilter) {
-  lectures = _lectures;
-  buttons = _buttons;
-  binFilter = _binFilter;
+      case 'css':
+      if (binFilter[1] == 0) {
+        binFilter[1] = 'css';
+      } else if (binFilter[1] == 'css') {
+        binFilter[1] = 0;
+      }
+      break;
 
-  const lecture = _lectures.querySelectorAll('.lecture');
+      case 'javascript':
+      if (binFilter[2] == 0) {
+        binFilter[2] = 'javascript';
+      } else if (binFilter[2] == 'javascript') {
+        binFilter[2] = 0;
+      }
+      break;
+    }
+    deleteItem(binFilter);
+  }
 
-  lecture[0].addEventListener('click', navigate);
-  lecture[1].addEventListener('click', navigate);
-  lecture[2].addEventListener('click', navigate);
-  lecture[3].addEventListener('click', navigate);
-  lecture[4].addEventListener('click', navigate);
-  lecture[5].addEventListener('click', navigate);
-  lecture[6].addEventListener('click', navigate);
-  lecture[7].addEventListener('click', navigate);
-  lecture[8].addEventListener('click', navigate);
-  lecture[9].addEventListener('click', navigate);
-  lecture[10].addEventListener('click', navigate);
-  lecture[11].addEventListener('click', navigate);
-  lecture[12].addEventListener('click', navigate);
+  function butt() {
+    console.log('butt'); //Fyrir debug
 
-  const button = _buttons.querySelectorAll('.button');
-  button[0].addEventListener('click', butt);
-  button[1].addEventListener('click', butt);
-  button[2].addEventListener('click', butt);
+    let tempID = this.id;
+    let tempClass = this.className;
 
-  //cssButton.addEventListener('click', butt);
+    let activeButton = document.getElementById(tempID);
 
-  //const htmlButton = _buttons.querySelector('.htmlButton');
-  //htmlButton.addEventListener('click', butt);
+    if (tempClass == 'button') {
+      activeButton.classList.add('button--active');
+    } else {
+      activeButton.setAttribute('class', 'button')
+    }
 
-  //const jsButton = _buttons.querySelector('.jsButton');
-  //jsButton.addEventListener('click', butt);
-}
+    switch(tempID) {
+      case 'html':
+      filter('html', binFilter);
+      break;
 
-return {
+      case 'css':
+      filter('css', binFilter);
+      break;
 
-  init, fetchData,
+      case 'javascript':
+      filter('javascript', binFilter);
+      break;
+    }
+  }
 
-};
+  function navigate() {
+    let tempSlug = this.id;
+    let tempUrl = "../fyrirlestur.html?slug=" + tempSlug;
+
+    window.location.href = tempUrl;
+  }
+
+  function init(_lectures, _buttons, _binFilter) {
+    lectures = _lectures;
+    buttons = _buttons;
+    binFilter = _binFilter;
+
+    const lecture = _lectures.querySelectorAll('.lecture');
+
+    lecture[0].addEventListener('click', navigate);
+    lecture[1].addEventListener('click', navigate);
+    lecture[2].addEventListener('click', navigate);
+    lecture[3].addEventListener('click', navigate);
+    lecture[4].addEventListener('click', navigate);
+    lecture[5].addEventListener('click', navigate);
+    lecture[6].addEventListener('click', navigate);
+    lecture[7].addEventListener('click', navigate);
+    lecture[8].addEventListener('click', navigate);
+    lecture[9].addEventListener('click', navigate);
+    lecture[10].addEventListener('click', navigate);
+    lecture[11].addEventListener('click', navigate);
+    lecture[12].addEventListener('click', navigate);
+
+    const button = _buttons.querySelectorAll('.button');
+    button[0].addEventListener('click', butt);
+    button[1].addEventListener('click', butt);
+    button[2].addEventListener('click', butt);
+  }
+
+  return {
+
+    init, fetchData,
+
+  };
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
-  //const page = document.querySelector('body'); //Frá OSK
-  //const isLecturePage = page.classList.contains('lecture-page'); //Frá OSK
+  const page = document.querySelector('body'); //Frá OSK
+  const isLecturePage = page.classList.contains('lecture-page'); //Frá OSK
 
-  const lectures = document.querySelector('.lectures');
-  const buttons = document.querySelector('.button__container');
+  //Frá OSK
+  if (page.className = isLecturePage) {
 
-  // Bý til vigur sem geymir upplýsingar um hvað hefur verið smellt á:
-  let binFilter = [0, 0, 0];
-  program.fetchData(binFilter, lectures, buttons);
+  } else {
 
-  /* Frá OSK
-  if (isLecturePage) {
+    const lectures = document.querySelector('.lectures');
+    const buttons = document.querySelector('.button__container');
 
-} else {
-const list = new List();
-list.load();
-}
-*/
+    // Bý til vigur sem geymir upplýsingar um hvað hefur verið smellt á:
+    let binFilter = [0, 0, 0];
+    program.fetchData(binFilter, lectures, buttons);
+
+    //const list = new List();
+    //list.load();
+  }
+
 });
