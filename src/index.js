@@ -1,4 +1,4 @@
-//import List from './lib/list';
+// import List from './lib/list';
 
 const API_URL = '../lectures.json';
 let checkDone;
@@ -6,6 +6,13 @@ let checkDone;
 const program = (() => {
 
   let lectures;
+
+  //function lectureDone() {
+  //Hafði hugsað að vera með fall hérna, sem tæki við slögg úr localStorage og
+  //setti upp í vigur jafnstóran og fjöldi fyrirlestra. Í hver einasta skipti
+  //sem add er kallað, athugar hún hvort það sé nýtt slögg í localStorage og
+  //bætir því við á viðeigandi stað, þannig að það sé hægt að indexa listann.
+  //}
 
   function el(element, className, clickHandler) {
 
@@ -20,7 +27,6 @@ const program = (() => {
 
   function takeFive(row_el, tempList, checkDone) {;
     //Smíðum síðan nýja lectures__col og náum í category etc. frá lecture.json
-    // Þetta eru öll elemntin sem Máni setti inn í html:
     console.log('takefive');
     let slugID = tempList["slug"];
 
@@ -53,7 +59,6 @@ const program = (() => {
 
     let checked = checkDone;
 
-
     //Þarf að bæta við þegar OK merkið er komið:
     if (checked == 1) {
       finished_el = el('p', 'lecture__finished', '0');
@@ -66,13 +71,13 @@ const program = (() => {
       detail_el.append(title_el);
       title_el.append(h2_el);
       h2_el.append(h2Text_el);
-
     }
   }
 
   function add(data, binFilter, lectures, buttons) {
 
     console.log(binFilter);
+    console.log('2');
     row_el = el('div', 'lectures__row', '0');
     lectures.append(row_el);
 
@@ -81,10 +86,9 @@ const program = (() => {
     //    if (Array.asArray(checkDone)) {
     //      checkDone = checkDone
     //    } else {
+    console.log('row');
     checkDone = new Array(data.length);
     //    }
-
-
     catCat = new Array(data.length);
 
     for (j = 0; j < data.length; j += 1 ) {
@@ -93,7 +97,7 @@ const program = (() => {
     }
 
     const zeroSUM = binFilter[0]+binFilter[1]+binFilter[2];
-
+    console.log('zero');
     for (i = 0; i < catCat.length; i += 1 ) {
 
       if (zeroSUM == 0) {
@@ -103,18 +107,18 @@ const program = (() => {
           case binFilter[0]:
           takeFive(row_el, data[i], checkDone[i]);
           break;
+
           case binFilter[1]:
           takeFive(row_el, data[i], checkDone[i]);
           break;
+
           case binFilter[2]:
           takeFive(row_el, data[i], checkDone[i]);
           break;
         }
       }
     }
-
     init(lectures, buttons, binFilter);
-    //console.log('add2');
   }
 
   function fetchData(binFilter, lectures, buttons) {
@@ -129,7 +133,7 @@ const program = (() => {
       add(data.lectures, binFilter, lectures, buttons);
     })
     .catch(() => {
-      console.log('Máni þekkir tölvunarfræðinginn Arnar');
+      console.log('Máni þekkir tölvunarfræðinginn Arnar');  //Fyrir debug
     });
   }
 
@@ -170,13 +174,11 @@ const program = (() => {
       }
       break;
     }
-
     deleteItem(binFilter);
   }
 
-  //buttonL er bara test nafn
   function butt() {
-    console.log('butt');
+    console.log('butt'); //Fyrir debug
 
     let tempID = this.id;
     let tempClass = this.className;
@@ -192,17 +194,14 @@ const program = (() => {
     switch(tempID) {
       case 'html':
       filter('html', binFilter);
-      console.log('button html')
       break;
 
       case 'css':
       filter('css', binFilter);
-      console.log('button css')
       break;
 
       case 'javascript':
       filter('javascript', binFilter);
-      console.log('button javascript')
       break;
     }
   }
@@ -239,7 +238,6 @@ const program = (() => {
     button[0].addEventListener('click', butt);
     button[1].addEventListener('click', butt);
     button[2].addEventListener('click', butt);
-
   }
 
   return {
@@ -264,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Bý til vigur sem geymir upplýsingar um hvað hefur verið smellt á:
     let binFilter = [0, 0, 0];
     program.fetchData(binFilter, lectures, buttons);
-    
+
     //const list = new List();
     //list.load();
   }
