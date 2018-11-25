@@ -27,6 +27,30 @@ node.js: https://nodejs.org/en/
 > npm install --save node-sass
 ```
 
+`babel`
+
+Í terminal:
+```
+> cd /*slóð á verkefni*
+> npm init
+..*svara spurningum*
+> npm install --save-dev @babel/core
+> npm install --save-dev @babel/cli
+> npm install --save-dev @babel/preset-env
+> npm install --save @babel/polyfill
+```
+
+`rollup`
+
+Í terminal:
+```
+> cd /*slóð á verkefni*
+> npm init
+..*svara spurningum*
+> npm install --save-dev rollup
+> npm install --save-dev rollup-plugin-babel
+```
+
 `eslint` - Er þegar sett upp í verkefninu, mæli með að setja upp `package`, til þess að fá villumeldingar í rauntíma. Í Atom má t.d. finna þetta í `Packages` > `Settings View` > `Install Packages/Themes` - `linter-eslint` frá `AtomLinter`
 
 --------------------------------------------------------------------------------------------------------------------------------------
