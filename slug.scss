@@ -1,0 +1,23 @@
+@import "config";
+
+.lecture {
+    margin: 0 $gutter auto auto;
+    max-width: $max-width;
+    
+
+    @media (min-width: $b-point-narrow){
+        width: 100% - $gutter;
+    } 
+}
+
+.footer {
+    &__finish {
+        font-family: $font-title;
+    }
+
+    &__back {
+        font-family: $font-title;
+        text-decoration: none;
+        color: $black;
+    }
+}
