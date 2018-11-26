@@ -7,12 +7,35 @@ const program = (() => {
 
   let lectures;
 
-  //function lectureDone() {
-  //Hafði hugsað að vera með fall hérna, sem tæki við slögg úr localStorage og
-  //setti upp í vigur jafnstóran og fjöldi fyrirlestra. Í hver einasta skipti
-  //sem add er kallað, athugar hún hvort það sé nýtt slögg í localStorage og
-  //bætir því við á viðeigandi stað, þannig að það sé hægt að indexa listann.
-  //}
+  function memory(_item) {
+    let tempMemory = window.localStorage.getItem(_item);
+    console.log(tempMemory);
+    return tempMemory
+  }
+
+  function lectureDone(lectureNo, data) {
+
+    let tempConst;
+    let tempMemory = new Array(data.length);
+    let _doneSave = new Array(data.length);
+
+    for (l = 0; l < lectureNo; l += 1 ) {
+
+      tempConst = data[l]["slug"];
+
+      tempMemory[l] = memory(tempConst);
+      console.log(tempMemory[l]);
+
+      if (tempConst == tempMemory[l]) {
+        _doneSave[l] = 1;
+
+      } else {
+        _doneSave[l] = 0;
+      }
+    }
+
+    return _doneSave
+  }
 
   function el(element, className, clickHandler) {
 
@@ -27,7 +50,6 @@ const program = (() => {
 
   function takeFive(row_el, tempList, checkDone) {;
     //Smíðum síðan nýja lectures__col og náum í category etc. frá lecture.json
-    console.log('takefive');
     let slugID = tempList["slug"];
 
     col_el = el('div', 'lectures__col', '0');
@@ -60,7 +82,7 @@ const program = (() => {
     let checked = checkDone;
 
     //Þarf að bæta við þegar OK merkið er komið:
-    if (checked == 1) {
+    if (checked !== 0) {
       finished_el = el('p', 'lecture__finished', '0');
       marker_el = document.createTextNode("\u2713");
       detail_el.append(title_el, finished_el);
@@ -76,28 +98,25 @@ const program = (() => {
 
   function add(data, binFilter, lectures, buttons) {
 
-    console.log(binFilter);
-    console.log('2');
     row_el = el('div', 'lectures__row', '0');
     lectures.append(row_el);
 
     //Leita í lectures.json, finna hvern category og setja inn í vigur
 
-    //    if (Array.asArray(checkDone)) {
-    //      checkDone = checkDone
-    //    } else {
-    console.log('row');
-    checkDone = new Array(data.length);
+    let lectureNo = data.length;
+    let doneSave = lectureDone(lectureNo, data);
+
+    checkDone = doneSave
+    console.log(checkDone);
     //    }
     catCat = new Array(data.length);
 
     for (j = 0; j < data.length; j += 1 ) {
       catCat[j] = data[j]["category"];
-      checkDone[j] = 1;
     }
 
     const zeroSUM = binFilter[0]+binFilter[1]+binFilter[2];
-    console.log('zero');
+
     for (i = 0; i < catCat.length; i += 1 ) {
 
       if (zeroSUM == 0) {
@@ -261,6 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Bý til vigur sem geymir upplýsingar um hvað hefur verið smellt á:
     let binFilter = [0, 0, 0];
+
     program.fetchData(binFilter, lectures, buttons);
 
     //const list = new List();

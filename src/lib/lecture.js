@@ -108,7 +108,20 @@ const lectgram = (() => {
 
     let shitTest = new URLSearchParams(document.location.search.substring(1));
 
-    let tempSlug = shitTest.get("slug")
+
+
+    let tempSlug = shitTest.get("slug");
+
+    const done = window.localStorage.getItem(tempSlug);
+    const check = document.querySelector('.footer__check');
+    if (done) {
+      check.textContent = `\u2713 Fyrirlestur kláraður`;
+      check.classList.add('footer--done')
+    } else {
+      check.textContent = 'Klára fyrirlestur';
+      check.setAttribute('class', 'footer__check')
+    }
+
 
     //Leita í lectures.json, finna hvern category og setja inn í vigur
 
@@ -168,18 +181,20 @@ const lectgram = (() => {
     const saved = window.localStorage.getItem('dataItem');
     const check = document.querySelector('.footer__check');
     if (saved) {
-      const parsed = JSON.parse(saved);
-      console.log('Vistuð gögn:', parsed);
-      check.textContent = `\u2713 Fyrirlestur kláraður`;
-      check.classList.add('footer--done')
-      window.localStorage.removeItem('dataItem');
-    } else {
-      const dataItem = { slugCheck };
-      console.log('Ekkert vistað, vista:', dataItem);
+      //const parsed = JSON.parse(saved);
+      //console.log('Vistuð gögn:', parsed);
       check.textContent = 'Klára fyrirlestur';
       check.setAttribute('class', 'footer__check')
-      const json = JSON.stringify(dataItem);
-      window.localStorage.setItem('dataItem', json);
+      window.localStorage.removeItem('dataItem');
+      window.localStorage.removeItem(slugCheck);
+    } else {
+      const dataItem = slugCheck;
+      //console.log('Ekkert vistað, vista:', dataItem);
+      check.textContent = `\u2713 Fyrirlestur kláraður`;
+      check.classList.add('footer--done')
+      //const json = JSON.stringify(dataItem);
+      window.localStorage.setItem('dataItem', dataItem);
+      window.localStorage.setItem(slugCheck, dataItem);
     }
   }
 
