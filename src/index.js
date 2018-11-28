@@ -71,8 +71,13 @@ const program = (() => {
     // Röðum upp:
     rowEl.append(colEl);
     colEl.append(sectionEl);
-    sectionEl.append(thumbEl, infoEl);
-    thumbEl.append(imgEl);
+    if (typeof tempList.thumbnail !== 'undefined') {
+      sectionEl.append(thumbEl, infoEl);
+      thumbEl.append(imgEl);
+    } else {
+      sectionEl.setAttribute('class', 'lecture lecture--noThumb');
+      sectionEl.append(infoEl);
+    }
     infoEl.append(categoryEl, detailEl);
     categoryEl.append(h3El);
     h3El.append(h3TextEl);

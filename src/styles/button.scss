@@ -1,31 +1,41 @@
+@import "config";
+
 .button {
   background-color: $lightgray;
   color: $black;
   border: none;
   border-radius: 0.3125em;
-  // width: 15em;
-  // height: 2.5em;
   font-family: $font-title;
-  font-size: 16px;
+  font-size: 1em;
+  font-weight: bold;
   text-align: center;
   text-decoration: none;
   transition-property: color, background-color;
   transition-duration: 300ms;
   transition-timing-function: ease-in-out;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: $gutter;
+  //display: flex;
+  //flex-direction: row;
+  //justify-content: center;
+  //margin: $gutter 0;
+  margin: 0;
+  //margin: 0 $gutter;
+  padding: (0.5*$gutter) $gutter;
 
-  // @media (max-width: $bpoint__narrow) {
-  //  font-size: 21px;
-  //  width: 15em;
-  //  height: 2.5em;
-  // }
+  @media (min-width: $bpoint-narrow) {
+    margin: 0 $gutter;
+  }
 
   &__container {
+    //max-width: 500px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    //margin: gutter (0.5*$gutter);
+    //margin: (0.5*$gutter) 0;
+    margin: $gutter auto;
+
+    @media (min-width: $bpoint-narrow) {
+      justify-content: center;
+    }
   }
 
   &:hover {
