@@ -1,225 +1,203 @@
 const API_URL = '../../lectures.json';
 
 const lectgram = (() => {
-
   function el(element, className, clickHandler) {
+    const elem = document.createElement(element);
+    elem.setAttribute('class', className);
 
-    const el = document.createElement(element);
-    el.setAttribute('class', className);
-
-    if (clickHandler != 0) {
-      el.addEventListener(clickHandler, navigate);
-    }
-    return el;
+   // if (clickHandler != 0) {
+      // XXX má henda út?
+   //   elem.addEventListener(clickHandler, navigate);
+   // }
+    return elem;
   }
 
-  function takeFive(main_el, tempList) {;
-    //Smíðum síðan nýja lectures__col og náum í category etc. frá lecture.json
-    console.log('takefive'); //For debugging
-    contentList = tempList.content;
+  function takeFive(mainEl, tempList) {
+    // Smíðum síðan nýja lectures__col og náum í category etc. frá lecture.json
+    console.log('takefive'); // For debugging
+    const contentList = tempList.content;
     console.log('contentList');
-    //Hér er contentList[i] vísun í einhvern vigur eða aðferð til að kalla á "type".
-    //For-lykkjan keyrir svo í gegnum alla "type" og smíðar þá með switch lykkju
-    //Mögulega er sniðugra að nota while lykkju þannig að við þurfum ekki að vita
-    //xxx.length
-    for (i = 0; i < contentList.length; i += 1) {
-      //Finna alla "type" og "data" innan data[X]
-      console.log('for');
-      console.log(i);
-      console.log(contentList[i]["type"]);
-      switch(contentList[i]["type"]) {
-        case 'youtube':
-        console.log('youtube')
-        video_el = el('iframe', 'lect__video' ,'0');
-        video_el.src = contentList[i]["data"];
-        video_el.style.width = "420px"; //Þarf líklega að breyta
-        video_el.style.height = "315px"; //Þarf líklega að breyta
-        main_el.append(video_el);
-        break;
-
-        case 'text':
-        console.log('text')
-        let txtCon_el = el('p','lect__text','0');
-        let txtTxt_el = document.createTextNode(contentList[i]["data"]);
-        txtCon_el.append(txtTxt_el);
-        main_el.append(txtCon_el);
-        break;
-
-        case 'quote':
-        console.log('quote')
-        quote_el = el('div','lect__quote','0');
-        quoteTxt_el = document.createTextNode(contentList[i]["data"]);
-        quote_el.append(quoteTxt_el);
-        main_el.append(quote_el);
-        break;
-
-        case 'image':
-        console.log('image')
-        img_el = el('img','lect__img','0');
-        img_el.src = "../../" + contentList[i]["data"];
-        main_el.append(img_el);
-        break;
-
-        case 'heading':
-        console.log('heading')
-        h2_el = el('h2','lect__heading','0');
-        h2Txt_el = document.createTextNode(contentList[i]["data"]);
-        h2_el.append(h2Txt_el);
-        main_el.append(h2_el);
-        break;
-
-        case 'list':
-        console.log('list')
-        let tempL = contentList[i]["data"]
-        let listCon_el = el('ul','lect__listContainer','0');
-        for (j = 0; j < tempL.length; j += 1) {
-          listIt_el = el('li','lect__listItem','0');
-          listItTxt_el = document.createTextNode(tempL[j]);
-          listIt_el.append(listItTxt_el);
-          listCon_el.append(listIt_el);
+    // Hér er contentList[i] vísun í einhvern vigur eða aðferð til að kalla á "type".
+    // For-lykkjan keyrir svo í gegnum alla "type" og smíðar þá með switch lykkju
+    // Mögulega er sniðugra að nota while lykkju þannig að við þurfum ekki að vita
+    // xxx.length
+    for (let i = 0; i < contentList.length; i += 1) {
+      // Finna alla "type" og "data" innan data[X]
+      switch (contentList[i].type) {
+        case 'youtube': {
+          console.log('youtube');
+          const videoEl = el('iframe', 'lect__video' ,'0');
+          videoEl.src = contentList[i].data;
+          videoEl.style.width = '420p'; //Þarf líklega að breyta
+          videoEl.style.height = '315px'; //Þarf líklega að breyta
+          mainEl.append(videoEl);
+          break;
         }
-        main_el.append(listCon_el);
-        break;
-
-        case 'code':
-        console.log('code')
-        code_el = el('div', 'lect__code','0');
-        codeTxt_el = document.createTextNode(contentList[i]["data"]);
-        code_el.append(codeTxt_el);
-        main_el.append(code_el);
-        break;
+        case 'text': {
+          console.log('text');
+          const txtConEl = el('p', 'lect__text', '0');
+          const txtTxtEl = document.createTextNode(contentList[i].data);
+          txtConEl.append(txtTxtEl);
+          mainEl.append(txtConEl);
+          break;
+        }
+        case 'quote': {
+          console.log('quote');
+          const quoteEl = el('div', 'lect__quote', '0');
+          const quoteTxtEl = document.createTextNode(contentList[i].data);
+          quoteEl.append(quoteTxtEl);
+          mainEl.append(quoteEl);
+          break;
+        }
+        case 'image': {
+          console.log('image');
+          const imgEl = el('img', 'lect__img', '0');
+          imgEl.src = `../../${contentList[i].data}`;
+          mainEl.append(imgEl);
+          break;
+        }
+        case 'heading': {
+          console.log('heading');
+          const h2El = el('h2', 'lect__heading', '0');
+          const h2TxtEl = document.createTextNode(contentList[i].data);
+          h2El.append(h2TxtEl);
+          mainEl.append(h2El);
+          break;
+        }
+        case 'list': {
+          console.log('list')
+          const tempL = contentList[i].data;
+          const listConEl = el('ul', 'lect__listContainer', '0');
+          let listItEl;
+          let listItTxtEl;
+          for (let j = 0; j < tempL.length; j += 1) {
+            listItEl = el('li', 'lect__listItem', '0');
+            listItTxtEl = document.createTextNode(tempL[j]);
+            listItEl.append(listItTxtEl);
+            listConEl.append(listItEl);
+          }
+          mainEl.append(listConEl);
+          break;
+        }
+        case 'code': {
+          console.log('code');
+          const codeEl = el('div', 'lect__code', '0');
+          const codeTxtEl = document.createTextNode(contentList[i].data);
+          codeEl.append(codeTxtEl);
+          mainEl.append(codeEl);
+          break;
+        }
+        default:
       }
     }
   }
 
-  function add(data) {
 
-    console.log('Function: add'); //For debugging
+  function init() {
+    const check = document.querySelector('.footer__check');
+    check.addEventListener('click', checkIt);
+  }
+
+  function add(data) {
+    console.log('Function: add'); // For debugging
 
     const lect = document.querySelector('.lect__row');
 
-    main_el = el('div', 'lect__col', '0');
-    lect.append(main_el);
+    const mainEl = el('div', 'lect__col', '0');
+    lect.append(mainEl);
+  
+    // const tempURL = window.location.href; XXX
 
-    //Mögulega er hægt að nota þetta til að leita af öllum types og data.
-    //let params = new URLSearchParams(document.location.search.substring(1));
-    //let name = params.get("slug"); // is the string "Box-model"
-    let tempURL = window.location.href;
-
-    let shitTest = new URLSearchParams(document.location.search.substring(1));
-
-
-
-    let tempSlug = shitTest.get("slug");
-
+    const queryString = new URLSearchParams(document.location.search.substring(1));
+    const tempSlug = queryString.get('slug');
     const done = window.localStorage.getItem(tempSlug);
     const check = document.querySelector('.footer__check');
+
     if (done) {
-      check.textContent = `\u2713 Fyrirlestur kláraður`;
-      check.classList.add('footer--done')
+      check.textContent = '\u2713 Fyrirlestur kláraður';
+      check.classList.add('footer--done');
     } else {
       check.textContent = 'Klára fyrirlestur';
-      check.setAttribute('class', 'footer__check')
+      check.setAttribute('class', 'footer__check');
     }
 
-
-    //Leita í lectures.json, finna hvern category og setja inn í vigur
-
+    // Leita í lectures.json, finna hvern category og setja inn í vigur
     let tempConst;
     let tempID;
-
-    for (l = 0; l < data.length; l += 1 ) {
-      tempConst = data[l]["slug"];
-
-      if (tempConst == tempSlug) {
+    for (let l = 0; l < data.length; l += 1) {
+      tempConst = data[l].slug;
+      if (tempConst === tempSlug) {
         tempID = l;
       }
     }
 
-    let tempCat = data[tempID]["category"];
-    let tempTitle = data[tempID]["title"];
+    const tempCat = data[tempID].category;
+    const tempTitle = data[tempID].title;
 
     const hCont = document.querySelector('.header__container');
 
-    sub_el = el('h2', 'header__title', '0');
-    sub_el.classList.add('header--subtitle');
-    subTxt_el = document.createTextNode(tempCat);
-    head_el = el('h1', 'header__title', '0');
-    headTxt_el = document.createTextNode(tempTitle);
+    const subEl = el('h2', 'header__title', '0');
+    subEl.classList.add('header--subtitle');
+    const subTxtEl = document.createTextNode(tempCat);
+    const headEl = el('h1', 'header__title', '0');
+    const headTxtEl = document.createTextNode(tempTitle);
 
-    sub_el.append(subTxt_el);
-    hCont.append(sub_el);
-    head_el.append(headTxt_el);
-    hCont.append(head_el);
+    subEl.append(subTxtEl);
+    hCont.append(subEl);
+    headEl.append(headTxtEl);
+    hCont.append(headEl);
 
-    takeFive(main_el, data[tempID]);
-
+    takeFive(mainEl, data[tempID]);
     init();
   }
 
   function fetchData() {
     fetch(API_URL)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      }
-      throw new Error('Villa kom upp');
-    })
-    .then((data) => {
-      add(data.lectures);
-    })
-    .catch(() => {
-      console.log('Máni þekkir tölvunarfræðinginn Arnar');  //Fyrir debug
-    });
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Villa kom upp');
+      })
+      .then((data) => {
+        add(data.lectures);
+      })
+      .catch(() => {
+      });
   }
 
   function checkIt() {
-
-    let tempSearch = new URLSearchParams(document.location.search.substring(1));
-    let slugCheck = tempSearch.get("slug")
+    const tempSearch = new URLSearchParams(document.location.search.substring(1));
+    const slugCheck = tempSearch.get('slug');
 
     const saved = window.localStorage.getItem('dataItem');
     const check = document.querySelector('.footer__check');
     if (saved) {
-      //const parsed = JSON.parse(saved);
-      //console.log('Vistuð gögn:', parsed);
       check.textContent = 'Klára fyrirlestur';
-      check.setAttribute('class', 'footer__check')
+      check.setAttribute('class', 'footer__check');
       window.localStorage.removeItem('dataItem');
       window.localStorage.removeItem(slugCheck);
     } else {
       const dataItem = slugCheck;
-      //console.log('Ekkert vistað, vista:', dataItem);
-      check.textContent = `\u2713 Fyrirlestur kláraður`;
-      check.classList.add('footer--done')
-      //const json = JSON.stringify(dataItem);
+      check.textContent = '\u2713 Fyrirlestur kláraður';
+      check.classList.add('footer--done');
       window.localStorage.setItem('dataItem', dataItem);
       window.localStorage.setItem(slugCheck, dataItem);
     }
   }
 
-  function init() {
-
-    const check = document.querySelector('.footer__check');
-    check.addEventListener('click', checkIt);
-  }
-
   return {
-
     init, fetchData,
-
   };
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
-  const page = document.querySelector('body'); //Frá OSK
-  const isLecturePage = page.classList.contains('lecture-page'); //Frá OSK
+  // const page = document.querySelector('body'); //Frá OSK XXX
+  // const isLecturePage = page.classList.contains('lecture-page'); //Frá OSK XXX
 
   console.log('Ný síða');
   lectgram.fetchData();
 
-
-
-  //const list = new List();
-  //list.load();
+  // const list = new List(); XXX
+  // list.load(); XXX
 });
