@@ -55,10 +55,14 @@ const program = (() => {
     sectionEl.setAttribute('id', slugID);
     const thumbEl = el('div', 'lecture__thumbnail', '0');
     const imgEl = el('img', 'img__thumbnail', '0');
+    let infoEl
     if (typeof tempList.thumbnail !== 'undefined') {
       imgEl.src = `../${tempList.thumbnail}`;
+      infoEl = el('div', 'lecture__info', '0');
+    } else {
+      infoEl = el('div', 'lecture__info lecture__info--noThumb', '0');
     }
-    const infoEl = el('div', 'lecture__info', '0');
+    //const infoEl = el('div', 'lecture__info', '0');
     const categoryEl = el('div', 'lecture__catContainer', '0');
     const h3El = el('h3', 'lecture__category', '0');
     const h3TextEl = document.createTextNode(tempList.category);
@@ -116,23 +120,6 @@ const program = (() => {
     lectures = _lectures;
     buttons = _buttons;
     binFilter = _binFilter;
-
-    //const lecture = _lectures.querySelectorAll('.lecture');
-    /*
-    lecture[0].addEventListener('click', navigate);
-    lecture[1].addEventListener('click', navigate);
-    lecture[2].addEventListener('click', navigate);
-    lecture[3].addEventListener('click', navigate);
-    lecture[4].addEventListener('click', navigate);
-    lecture[5].addEventListener('click', navigate);
-    lecture[6].addEventListener('click', navigate);
-    lecture[7].addEventListener('click', navigate);
-    lecture[8].addEventListener('click', navigate);Fyrirlestur
-    lecture[9].addEventListener('click', navigate);
-    lecture[10].addEventListener('click', navigate);
-    lecture[11].addEventListener('click', navigate);
-    lecture[12].addEventListener('click', navigate);
-    */
 
     const button = buttons.querySelectorAll('.button');
     button[0].addEventListener('click', butt);

@@ -22,23 +22,22 @@ html { /* stylelint-disable-line */
 
 img { /* stylelint-disable-line */
   max-width: 100%;
+  object-fit: cover;
 }
 
 main { /* stylelint-disable-line */
   max-width: $max-width;
-  margin: 0 auto;
   padding-right: $gutter;
   padding-left: $gutter;
+  margin: 0 auto;
 
   @media (min-width: $max-width) {
-    padding-left: 0;
     padding-right: 0;
+    padding-left: 0;
   }
 
 }
 
-
-// TODO import
 @import "index";
 @import "header";
 @import "button";

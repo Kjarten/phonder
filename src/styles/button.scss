@@ -1,40 +1,40 @@
 @import "config";
 
 .button {
-  background-color: $lightgray;
-  color: $black;
-  border: none;
-  border-radius: 0.3125em;
+  padding: (0.5*$gutter) $gutter;
+
   font-family: $font-title;
-  font-size: 1em;
+  font-size: 1.5em;
   font-weight: bold;
+  color: $black;
   text-align: center;
   text-decoration: none;
-  transition-property: color, background-color;
-  transition-duration: 300ms;
+
+  background-color: $lightgray;
+  //border: none;
+
+  border-radius: 0.3125em;
+
   transition-timing-function: ease-in-out;
-  //display: flex;
-  //flex-direction: row;
-  //justify-content: center;
-  //margin: $gutter 0;
-  margin: 0;
-  //margin: 0 $gutter;
-  padding: (0.5*$gutter) $gutter;
+  transition-duration: 300ms;
+  transition-property: color, background-color;
 
   @media (min-width: $bpoint-narrow) {
     margin: 0 $gutter;
   }
 
   &__container {
-    //max-width: 500px;
     display: flex;
     justify-content: space-between;
+
+    max-width: 500px;
+
     //margin: gutter (0.5*$gutter);
     //margin: (0.5*$gutter) 0;
-    margin: $gutter auto;
+    margin: 1.5*$gutter auto;
 
-    @media (min-width: $bpoint-narrow) {
-      justify-content: center;
+    @media (max-width: $bpoint-slim) {
+      flex-wrap: wrap;
     }
   }
 
@@ -46,34 +46,7 @@
     background-color: $lightgreen;
 
     &:hover {
-    background-color: $darkgreen;
+      background-color: $darkgreen;
     }
   }
-
-  // &--cart {
-  //  flex-direction: row;
-  //  background-color: $white;
-  //  border: 1px solid $black;
-  //  text-align: left;
-  //  width: auto;
-  //  padding: 0 10px;
-  //  margin: 0 10px;
-  //  display: flex;
-  //  align-items: center;
-  //  height: 40px;
-  //  font-size: 0.75em;
-
-  //  @media (max-width: $bpoint__slim) {
-  //    margin: $slim__boxes 0;
-  //  }
-
-  //  &:hover {
-  //    background-color: $red;
-  //    color: $black;
-  //  }
-  // }
-
-  // &__text {
-  //   margin: 0 0.5em;
-  // }
 }
