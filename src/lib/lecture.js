@@ -12,6 +12,13 @@ const lectgram = (() => {
     return elem;
   }
 
+  function addP(part, mainEl) {
+    const txtEl = el('p', 'lect__text', '0');
+    const txt = document.createTextNode(part);
+    txtEl.append(txt);
+    mainEl.append(txtEl);
+  }
+
   function takeFive(mainEl, tempList) {
     // Smíðum síðan nýja lectures__col og náum í category etc. frá lecture.json
     console.log('takefive'); // For debugging
@@ -26,34 +33,62 @@ const lectgram = (() => {
       switch (contentList[i].type) {
         case 'youtube': {
           console.log('youtube');
-          const videoEl = el('iframe', 'lect__video' ,'0');
+          const containerEl = el('div', 'lect__container container--video', '0');
+          const videoEl = el('iframe', 'lect__video', '0');
           videoEl.src = contentList[i].data;
-          videoEl.style.width = '420p'; //Þarf líklega að breyta
-          videoEl.style.height = '315px'; //Þarf líklega að breyta
-          mainEl.append(videoEl);
+          //videoEl.width = videoEl.contentWindow.document.body.scrollWidth;
+          //videoEl.height = videoEl.contentWindow.document.body.scrollHeight;
+          //videoEl.style.width = '420p'; //Þarf líklega að breyta
+          //videoEl.style.height = '315px'; //Þarf líklega að breyta
+          //videoEl.style = 'height:100%; width: 100%;';
+          //const wth = lecture_.clientWidth;
+          //console.log(wth);
+          videoEl.style.width = '100%';
+          videoEl.style.height = '100%';
+          //mainEl.append(videoEl);
+          mainEl.append(containerEl);
+          containerEl.append(videoEl);
           break;
         }
         case 'text': {
           console.log('text');
-          const txtConEl = el('p', 'lect__text', '0');
-          const txtTxtEl = document.createTextNode(contentList[i].data);
-          txtConEl.append(txtTxtEl);
-          mainEl.append(txtConEl);
+          let txt = contentList[i].data;
+          let nline = txt.indexOf('\n');
+          console.log(nline);
+          let part;
+          while (nline > 0) {
+            part = txt.substr(0, nline);
+            addP(part, mainEl);
+            txt = txt.substring(nline + 1);
+            nline = txt.indexOf('\n');
+          }
           break;
         }
         case 'quote': {
           console.log('quote');
           const quoteEl = el('div', 'lect__quote', '0');
-          const quoteTxtEl = document.createTextNode(contentList[i].data);
-          quoteEl.append(quoteTxtEl);
+          const quoteTxt = el('p', 'quote__text', '0');
+          const quoteAuthor = el('p', 'quote__author', '0');
+          const txt = document.createTextNode(contentList[i].data);
+          const author = document.createTextNode(contentList[i].attribute);
+          quoteTxt.append(txt);
+          quoteEl.append(quoteTxt);
+          quoteAuthor.append(author);
+          quoteEl.append(quoteAuthor);
           mainEl.append(quoteEl);
           break;
         }
         case 'image': {
           console.log('image');
+          const imgContainer = el('div', 'lect__container container--img', '0');
           const imgEl = el('img', 'lect__img', '0');
+          const captionEl = el('div', 'lect__caption', '0');
+          const txt = document.createTextNode(contentList[i].caption);
           imgEl.src = `../../${contentList[i].data}`;
-          mainEl.append(imgEl);
+          imgContainer.append(imgEl);
+          captionEl.append(txt);
+          imgContainer.append(captionEl);
+          mainEl.append(imgContainer);
           break;
         }
         case 'heading': {
@@ -81,7 +116,7 @@ const lectgram = (() => {
         }
         case 'code': {
           console.log('code');
-          const codeEl = el('div', 'lect__code', '0');
+          const codeEl = el('pre', 'lect__code', '0');
           const codeTxtEl = document.createTextNode(contentList[i].data);
           codeEl.append(codeTxtEl);
           mainEl.append(codeEl);
