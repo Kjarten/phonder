@@ -10,52 +10,102 @@
     flex-wrap: nowrap;
     flex-direction: column;
     margin-bottom: $gutter;
-    margin-left: 3*($gutter);
-    margin-right: 3*($gutter);
+    margin-left: -($gutter / 2);
+    margin-right: -($gutter / 2);
   }
 
   &__col {
-    padding-right: 3*$gutter;
-    padding-left: 3*$gutter;
+    padding-right: ($gutter / 2);
+    padding-left: ($gutter / 2);
     margin-bottom: $gutter;
     width: 100%;
   }
 
-  &__video {
-    display: flex;
+  // &__container {
+    
 
+  &__video {
+    //display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
   }
 
   &__text {
     display: flex;
     font-family: $font-main;
+    font-size: 1em;
+    margin: 1.5*$gutter 0;
+    white-space: pre-wrap;
   }
 
   &__quote {
     display: flex;
+    flex-direction: column;
+    margin: $gutter 0;
+    margin-right: -($gutter);
+    margin-left: -($gutter);
+    padding-right:($gutter);
+    padding-left: ($gutter);
+    background-color: $lightgray;
   }
 
   &__img {
     display: flex;
+    width: 100%;
+  }
+
+  &__caption {
+    font-style: italic;
   }
 
   &__heading {
-    display: flex;
     font-family: $font-title;
+    font-size: 2em;
+    font-weight: bold;
+    margin: 1.5*$gutter 0;
   }
 
   &__listContainer {
     display: flex;
     flex-direction: column;
-    font-family: $font-main;
   }
 
   &__listItem {
-
+    font-family: $font-main;
+    margin: $gutter/2 0;
   }
 
   &__code {
-    display: flex;
+    margin: 1.5*$gutter 0;
+  }
+}
+
+.quote {
+  &__text{
+    margin: $gutter 0;
+  }
+
+  &__author {
+    font-style: italic;
+    margin-bottom: $gutter;
+  }
+}
+// xxx laga hlutföll og nafn á elem
+.container {
+  &--video {
+    // xxx laga hlutföll og nafn á elem
+    position: relative;
+    width: 100%;
+    padding-bottom: 60%;
+    margin: 1.5*$gutter 0;
+  }
+
+  &--img {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1.5*$gutter;
+    margin-bottom: 2*$gutter; 
   }
 }
 
