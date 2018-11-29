@@ -14,7 +14,7 @@ const lectgram = (() => {
 
   function addP(part, mainEl) {
     const txtEl = el('p', 'lect__text', '0');
-    const txt = document.createTextNode(contentList[i].data);
+    const txt = document.createTextNode(part);
     txtEl.append(txt);
     mainEl.append(txtEl);
   }
@@ -52,35 +52,16 @@ const lectgram = (() => {
         }
         case 'text': {
           console.log('text');
-          const txtConEl = el('p', 'lect__text', '0');
-          let txtEl = el('p', 'lect__text', '0');
-          //let txt = contentList[i].data;
-          //let nline = txt.indexOf('\n');
-          //console.log(nline);
-          //let part;
-          //while (nline > 0) {
-          //  //var txtEl = el('p', 'lect__text', '0');
-          //  part = txt.substr(0, nline);
-          //  addP(part, mainEl);
-          //  txt = txt.substring(nline + 1);
-          //  nline = txt.indexOf('\n');
-          //}
-          //         //  console.log(part);
-          //  console.log(txt);
-          //  console.log(nline);
-          //  txtPart = document.createTextNode(part);
-          //  txtEl.appened(txtPart);
-          //  mainEl.append(txtEl);
-          //}
-          //console.log(txt.length);
-          //console.log(txt.indexOf('\n'));
-          //console.log(part.length);
-          //console.log(part);
-          //txt.replace(/\n/gi, '\n\n');
-          //console.log(txt);
-          const txtTxtEl = document.createTextNode(contentList[i].data);
-          txtConEl.append(txtTxtEl);
-          mainEl.append(txtConEl);
+          let txt = contentList[i].data;
+          let nline = txt.indexOf('\n');
+          console.log(nline);
+          let part;
+          while (nline > 0) {
+            part = txt.substr(0, nline);
+            addP(part, mainEl);
+            txt = txt.substring(nline + 1);
+            nline = txt.indexOf('\n');
+          }
           break;
         }
         case 'quote': {
