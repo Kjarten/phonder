@@ -11,6 +11,7 @@
   &__row {
     display: flex;
     flex-wrap: wrap;
+    align-items: stretch;
 
     margin-bottom: $gutter;
     margin-left: -($gutter / 2);
@@ -42,12 +43,14 @@
   //justify-content: space-between;
   background-color: $lightgray;
 
+  margin: $gutter 0;
+
   &--noThumb {
     justify-content: flex-end;
   }
 
   &__thumbnail {
-    //max-height: 70%;
+    max-height: 70%;
   }
 
   &__info {

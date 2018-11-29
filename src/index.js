@@ -1,7 +1,7 @@
 // import List from './lib/list';
 
 const API_URL = '../lectures.json';
-let checkDone;
+//let checkDone;
 
 const program = (() => {
   // let lectures;
@@ -21,7 +21,6 @@ const program = (() => {
     const _doneSave = new Array(data.length);
 
     for (let l = 0; l < lectureNo; l += 1) {
-
       tempConst = data[l].slug;
 
       tempMemory[l] = memory(tempConst);
@@ -135,7 +134,7 @@ const program = (() => {
     lecture[12].addEventListener('click', navigate);
     */
 
-    const button = _buttons.querySelectorAll('.button');
+    const button = buttons.querySelectorAll('.button');
     button[0].addEventListener('click', butt);
     button[1].addEventListener('click', butt);
     button[2].addEventListener('click', butt);
