@@ -1,9 +1,7 @@
 @import "config";
 
 .lect {
-  //max-width: 800px;
   margin: 0 auto;
-  //width: 100%;
 
   &__row {
     display: flex;
@@ -13,20 +11,19 @@
     margin-left: -($gutter / 2);
 
     width: 100%;
-    //max-width: 800px;
 
     flex-wrap: nowrap;
     flex-direction: column;
-
-    @media (min-width: 801px) {
-      //width: 66.6666666%;
-
-      margin: 0 auto;
-    }
   }
 
   &__col {
     width: 100%;
+
+    @media (min-width: $bpoint-wide) {
+      width: 66.6666666%;
+
+      margin: 0 auto;
+    }
 
     padding-right: ($gutter / 2);
     padding-left: ($gutter / 2);
@@ -35,7 +32,6 @@
   }
 
   &__video {
-    //display: flex;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -48,7 +44,6 @@
 
     font-family: $font-main;
     font-size: 1em;
-    //white-space: pre-line;
   }
 
   &__quote {
@@ -108,10 +103,9 @@
     font-style: italic;
   }
 }
-// xxx laga hlutföll og nafn á elem
+
 .container {
   &--video {
-    // xxx laga hlutföll og nafn á elem
     position: relative;
     width: 100%;
     padding-bottom: 60%;
