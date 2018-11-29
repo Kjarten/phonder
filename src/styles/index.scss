@@ -29,67 +29,50 @@
     @media (min-width: $bpoint-wide) {
         width: 33.33333%;
     }
-
   }
-
 }
 
 .lecture {
   display: flex;
   height: 100%;
   flex-direction: column;
-  justify-content: space-between;
-  //justify-content: flex-end;
   background-color: $lightgray;
 
-  //margin: $gutter 0;
+  transition-property: color, background-color;
+  transition-duration: 300ms;
+  transition-timing-function: ease-in-out;
 
   &--noThumb {
     justify-content: flex-end;
-  }
-  //  transition-property: color, background-color;
-  //  transition-duration: 300ms;
-  //  transition-timing-function: ease-in-out;
-//
-  //  &:hover {
-  //    background-color: $gray;
-  //  }
-  //}
-
-  &__thumbnail {
-    max-height: 70%;
-  }
-
-  &__info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    background-color: $lightgray;
-    min-height: 30%;
-    padding: 0 ($gutter / 2);
-    transition-property: color, background-color;
-    transition-duration: 300ms;
-    transition-timing-function: ease-in-out;
 
     &:hover {
       background-color: $gray;
     }
+  }
+
+  &__thumbnail {
+  }
+
+  &:hover {
+    background-color: $gray;
+  }
+
+  &__info {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0 ($gutter / 2);
 
     &--noThumb {
-      //height: 100%;
-      //justify-content: flex-end;
     }
   }
 
   &__catContainer {
-    min-height: 30%;
   }
 
   &__detail {
-    height: 70%;
     display: flex;
     justify-content: space-between;
-    align-content: flex-start;
   }
 
   &__title {
@@ -102,12 +85,11 @@
     font-family: $font-title;
     font-size: 1em;
     font-weight: 400;
+    text-transform: uppercase;
   }
 
   &__finished {
     font-size: 3em;
     color: $lightgreen;
-    vertical-align: text-top;
   }
 }
-
