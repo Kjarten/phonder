@@ -1,6 +1,6 @@
 // import List from './lib/list';
 
-const API_URL = '../lectures.json';
+const API_URL = './data/lectures.json';
 //let checkDone;
 
 const program = (() => {
@@ -57,7 +57,8 @@ const program = (() => {
     const imgEl = el('img', 'img__thumbnail', '0');
     let infoEl
     if (typeof tempList.thumbnail !== 'undefined') {
-      imgEl.src = `../${tempList.thumbnail}`;
+      console.log('KJARTI');
+      imgEl.src = `./hopverkefni2/${tempList.thumbnail}`;
       infoEl = el('div', 'lecture__info', '0');
     } else {
       infoEl = el('div', 'lecture__info lecture__info--noThumb', '0');
