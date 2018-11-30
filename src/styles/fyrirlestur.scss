@@ -6,11 +6,11 @@
   &__row {
     display: flex;
 
+    width: 100%;
+
     margin-right: -($gutter / 2);
     margin-bottom: $gutter;
     margin-left: -($gutter / 2);
-
-    width: 100%;
 
     flex-wrap: nowrap;
     flex-direction: column;
